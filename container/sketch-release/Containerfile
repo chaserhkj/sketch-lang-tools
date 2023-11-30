@@ -1,0 +1,10 @@
+FROM docker.io/library/gcc:13-bookworm as build
+
+ENV SKETCH_VERSION=1.7.6
+RUN apt update && apt install -y flex bison
+ADD build.sh /build.sh
+RUN bash build.sh
+
+FROM docker.io/library/eclipse-temurin:8
+
+COPY --from=build /install/ /
