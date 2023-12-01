@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+import "context.proto";
+import "node.proto";
+
+message FieldDecl {
+    Context context = 1;
+    Node origin = 2;
+    // private List<Type> types;
+    repeated string names = 4;
+    // private List<Expression> inits;
+}

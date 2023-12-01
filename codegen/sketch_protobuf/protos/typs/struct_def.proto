@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "context.proto";
+import "node.proto";
+
+
+message StructDef {
+    Context context = 1;
+    Node origin = 2;
+
+    string name = 3;
+    string pkg = 4;
+    // private final ImmutableTypedHashMap<String, Type> fieldTypMap;
+    repeated string typeargs = 6;
+    // For sake of ADT
+    string parentName = 7;
+    int32 actFieldsSize = 8;
+    bool isInstantiable = 9;
+    bool immutable = 10;
+    repeated string fieldOrder = 11;
+    // private HashmapList<String, Annotation> annotations =
+            // new HashmapList<String, Annotation>();
+
+}

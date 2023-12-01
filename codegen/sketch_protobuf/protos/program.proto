@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+import "context.proto";
+import "node.proto";
+import "package.proto";
+import "directive.proto";
+
+message Program {
+    Context context = 1;
+    Node origin = 2;
+    repeated Package packages = 3;
+    repeated Directive directives = 4;
+}

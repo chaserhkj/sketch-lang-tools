@@ -1,0 +1,1473 @@
+{
+  "packages": [
+    {
+      "name": "ANONYMOUS",
+      "vars": [],
+      "funcs": [
+        {
+          "fixes": [],
+          "name": "doubleSketch__Wrapper",
+          "returnType": {
+            "type": 9,
+            "memtyp": "UNDEFINED"
+          },
+          "params": [
+            {
+              "type": {
+                "type": 4,
+                "memtyp": "UNDEFINED"
+              },
+              "name": "x",
+              "partype": 0,
+              "srcTupleDepth": -1,
+              "isImplicit": false,
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              },
+              "origin": {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            }
+          ],
+          "typeParams": [],
+          "body": {
+            "stmts": [
+              {
+                "expr": {
+                  "name": "doubleSketch",
+                  "clusterId": 0,
+                  "callid": 0,
+                  "params": [
+                    {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 1,
+                        "columnNumber": -1,
+                        "file": "hello.sk:1"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 1,
+                          "columnNumber": -1,
+                          "file": "hello.sk:1"
+                        }
+                      }
+                    }
+                  ],
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 1,
+                    "columnNumber": -1,
+                    "file": "hello.sk:1"
+                  },
+                  "origin": {
+                    "name": "doubleSketch",
+                    "clusterId": 0,
+                    "callid": 0,
+                    "params": [
+                      {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 1,
+                          "columnNumber": -1,
+                          "file": "hello.sk:1"
+                        }
+                      }
+                    ],
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 1,
+                      "columnNumber": -1,
+                      "file": "hello.sk:1"
+                    }
+                  }
+                },
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                },
+                "origin": {
+                  "name": "doubleSketch",
+                  "clusterId": 0,
+                  "callid": 0,
+                  "params": [
+                    {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 1,
+                        "columnNumber": -1,
+                        "file": "hello.sk:1"
+                      }
+                    }
+                  ],
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 1,
+                    "columnNumber": -1,
+                    "file": "hello.sk:1"
+                  }
+                }
+              }
+            ],
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            },
+            "origin": {
+              "name": "doubleSketch",
+              "clusterId": 0,
+              "callid": 0,
+              "params": [
+                {
+                  "name": "x",
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 1,
+                    "columnNumber": -1,
+                    "file": "hello.sk:1"
+                  }
+                }
+              ],
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            }
+          },
+          "fImplements": "doubleSketch__WrapperNospec",
+          "fcnInfo": {
+            "fcnType": "Wrapper",
+            "libraryType": "Default",
+            "cudaType": "Default",
+            "determinsitic": "Unknown",
+            "printType": "Default",
+            "solveType": "Default"
+          },
+          "pkg": "ANONYMOUS",
+          "annotations": {
+            "base": {}
+          },
+          "context": {
+            "fileName": "hello.sk",
+            "lineNumber": 1,
+            "columnNumber": -1,
+            "file": "hello.sk:1"
+          },
+          "origin": {
+            "fixes": [],
+            "name": "doubleSketch__Wrapper",
+            "returnType": {
+              "type": 9,
+              "memtyp": "UNDEFINED"
+            },
+            "params": [
+              {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            ],
+            "typeParams": [],
+            "body": {
+              "stmts": [
+                {
+                  "expr": {
+                    "name": "doubleSketch",
+                    "clusterId": 0,
+                    "callid": 0,
+                    "params": [
+                      {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 1,
+                          "columnNumber": -1,
+                          "file": "hello.sk:1"
+                        }
+                      }
+                    ],
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 1,
+                      "columnNumber": -1,
+                      "file": "hello.sk:1"
+                    }
+                  },
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 1,
+                    "columnNumber": -1,
+                    "file": "hello.sk:1"
+                  },
+                  "origin": {
+                    "name": "doubleSketch",
+                    "clusterId": 0,
+                    "callid": 0,
+                    "params": [
+                      {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 1,
+                          "columnNumber": -1,
+                          "file": "hello.sk:1"
+                        }
+                      }
+                    ],
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 1,
+                      "columnNumber": -1,
+                      "file": "hello.sk:1"
+                    }
+                  }
+                }
+              ],
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            },
+            "fImplements": "doubleSketch__WrapperNospec",
+            "fcnInfo": {
+              "fcnType": "Wrapper",
+              "libraryType": "Default",
+              "cudaType": "Default",
+              "determinsitic": "Unknown",
+              "printType": "Default",
+              "solveType": "Default"
+            },
+            "pkg": "ANONYMOUS",
+            "annotations": {
+              "base": {}
+            },
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            }
+          }
+        },
+        {
+          "fixes": [],
+          "name": "doubleSketch__WrapperNospec",
+          "returnType": {
+            "type": 9,
+            "memtyp": "UNDEFINED"
+          },
+          "params": [
+            {
+              "type": {
+                "type": 4,
+                "memtyp": "UNDEFINED"
+              },
+              "name": "x",
+              "partype": 0,
+              "srcTupleDepth": -1,
+              "isImplicit": false,
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              },
+              "origin": {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            }
+          ],
+          "typeParams": [],
+          "body": {
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            },
+            "origin": {
+              "fixes": [],
+              "name": "doubleSketch__WrapperNospec",
+              "returnType": {
+                "type": 9,
+                "memtyp": "UNDEFINED"
+              },
+              "params": [
+                {
+                  "type": {
+                    "type": 4,
+                    "memtyp": "UNDEFINED"
+                  },
+                  "name": "x",
+                  "partype": 0,
+                  "srcTupleDepth": -1,
+                  "isImplicit": false,
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 1,
+                    "columnNumber": -1,
+                    "file": "hello.sk:1"
+                  }
+                }
+              ],
+              "typeParams": [],
+              "body": {
+                "stmts": [],
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              },
+              "fcnInfo": {
+                "fcnType": "Wrapper",
+                "libraryType": "Default",
+                "cudaType": "Default",
+                "determinsitic": "Unknown",
+                "printType": "Default",
+                "solveType": "Default"
+              },
+              "pkg": "ANONYMOUS",
+              "annotations": {
+                "base": {}
+              },
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            }
+          },
+          "fcnInfo": {
+            "fcnType": "Wrapper",
+            "libraryType": "Default",
+            "cudaType": "Default",
+            "determinsitic": "Unknown",
+            "printType": "Default",
+            "solveType": "Default"
+          },
+          "pkg": "ANONYMOUS",
+          "annotations": {
+            "base": {}
+          },
+          "context": {
+            "fileName": "hello.sk",
+            "lineNumber": 1,
+            "columnNumber": -1,
+            "file": "hello.sk:1"
+          },
+          "origin": {
+            "fixes": [],
+            "name": "doubleSketch__WrapperNospec",
+            "returnType": {
+              "type": 9,
+              "memtyp": "UNDEFINED"
+            },
+            "params": [
+              {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            ],
+            "typeParams": [],
+            "body": {
+              "stmts": [],
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            },
+            "fcnInfo": {
+              "fcnType": "Wrapper",
+              "libraryType": "Default",
+              "cudaType": "Default",
+              "determinsitic": "Unknown",
+              "printType": "Default",
+              "solveType": "Default"
+            },
+            "pkg": "ANONYMOUS",
+            "annotations": {
+              "base": {}
+            },
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            }
+          }
+        },
+        {
+          "fixes": [],
+          "name": "doubleSketch",
+          "returnType": {
+            "type": 9,
+            "memtyp": "UNDEFINED"
+          },
+          "params": [
+            {
+              "type": {
+                "type": 4,
+                "memtyp": "UNDEFINED"
+              },
+              "name": "x",
+              "partype": 0,
+              "srcTupleDepth": -1,
+              "isImplicit": false,
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              },
+              "origin": {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            }
+          ],
+          "typeParams": [],
+          "body": {
+            "stmts": [
+              {
+                "cond": {
+                  "op": 8,
+                  "left": {
+                    "op": 3,
+                    "left": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 2,
+                        "columnNumber": -1,
+                        "file": "hello.sk:2"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      }
+                    },
+                    "right": {
+                      "val": 2
+                    },
+                    "alias": {
+                      "op": 3,
+                      "left": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 2,
+                            "columnNumber": -1,
+                            "file": "hello.sk:2"
+                          }
+                        }
+                      },
+                      "right": {
+                        "val": 2
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 2,
+                        "columnNumber": -1,
+                        "file": "hello.sk:2"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 2,
+                      "columnNumber": -1,
+                      "file": "hello.sk:2"
+                    },
+                    "origin": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 2,
+                        "columnNumber": -1,
+                        "file": "hello.sk:2"
+                      }
+                    }
+                  },
+                  "right": {
+                    "op": 1,
+                    "left": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "right": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "alias": {
+                      "op": 1,
+                      "left": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "right": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "alias": {
+                    "op": 8,
+                    "left": {
+                      "name": "t_3_3",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "t",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": 1,
+                      "left": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "right": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  },
+                  "origin": {
+                    "name": "t",
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    }
+                  }
+                },
+                "msg": "Assert at hello.sk:3 (2)",
+                "isHard": false,
+                "superA": 0,
+                "isMax": 0,
+                "_my_rand": 0,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 3,
+                  "columnNumber": -1,
+                  "file": "hello.sk:3"
+                },
+                "origin": {
+                  "cond": {
+                    "op": 8,
+                    "left": {
+                      "name": "t_3_3",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "t",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "right": {
+                      "op": 1,
+                      "left": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "right": {
+                        "name": "x_2_2",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        },
+                        "origin": {
+                          "name": "x",
+                          "context": {
+                            "fileName": "hello.sk",
+                            "lineNumber": 3,
+                            "columnNumber": -1,
+                            "file": "hello.sk:3"
+                          }
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "msg": "Assert at hello.sk:3 (2)",
+                  "isHard": false,
+                  "superA": 0,
+                  "isMax": 0,
+                  "_my_rand": 0,
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  }
+                }
+              }
+            ],
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 3,
+              "columnNumber": -1,
+              "file": "hello.sk:3"
+            },
+            "origin": {
+              "cond": {
+                "op": 8,
+                "left": {
+                  "name": "t_3_3",
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  },
+                  "origin": {
+                    "name": "t",
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    }
+                  }
+                },
+                "right": {
+                  "op": 1,
+                  "left": {
+                    "name": "x_2_2",
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "right": {
+                    "name": "x_2_2",
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "x",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  },
+                  "origin": {
+                    "name": "x",
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    }
+                  }
+                },
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 3,
+                  "columnNumber": -1,
+                  "file": "hello.sk:3"
+                },
+                "origin": {
+                  "name": "t",
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  }
+                }
+              },
+              "msg": "Assert at hello.sk:3 (2)",
+              "isHard": false,
+              "superA": 0,
+              "isMax": 0,
+              "_my_rand": 0,
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 3,
+                "columnNumber": -1,
+                "file": "hello.sk:3"
+              }
+            }
+          },
+          "fcnInfo": {
+            "fcnType": "Static",
+            "libraryType": "Default",
+            "cudaType": "Default",
+            "determinsitic": "Unknown",
+            "printType": "Default",
+            "solveType": "Default"
+          },
+          "pkg": "ANONYMOUS",
+          "annotations": {
+            "base": {}
+          },
+          "context": {
+            "fileName": "hello.sk",
+            "lineNumber": 1,
+            "columnNumber": -1,
+            "file": "hello.sk:1"
+          },
+          "origin": {
+            "fixes": [],
+            "name": "doubleSketch",
+            "returnType": {
+              "type": 9,
+              "memtyp": "UNDEFINED"
+            },
+            "params": [
+              {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            ],
+            "typeParams": [],
+            "body": {
+              "stmts": [
+                {
+                  "types": [
+                    {
+                      "type": 4,
+                      "memtyp": "UNDEFINED"
+                    }
+                  ],
+                  "names": [
+                    "t"
+                  ],
+                  "inits": [
+                    {
+                      "op": 3,
+                      "left": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      },
+                      "right": {
+                        "size": 5,
+                        "rangelow": 0,
+                        "rangehigh": 0,
+                        "frangelow": 0,
+                        "frangehigh": 0,
+                        "hasrange": false,
+                        "isFixed": false,
+                        "type": {
+                          "type": 4,
+                          "memtyp": "UNDEFINED"
+                        },
+                        "INT_SIZE": 5,
+                        "isGlobal": false,
+                        "starName": "H__0",
+                        "typeWasSetByScala": false,
+                        "kind": "NORMAL",
+                        "isSpecial": false,
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 2,
+                        "columnNumber": -1,
+                        "file": "hello.sk:2"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      }
+                    }
+                  ],
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 2,
+                    "columnNumber": -1,
+                    "file": "hello.sk:2"
+                  }
+                },
+                {
+                  "cond": {
+                    "op": 8,
+                    "left": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    },
+                    "right": {
+                      "op": 1,
+                      "left": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      },
+                      "right": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "isHard": false,
+                  "superA": 0,
+                  "isMax": 0,
+                  "_my_rand": 3,
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  }
+                }
+              ],
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            },
+            "fcnInfo": {
+              "fcnType": "Harness",
+              "libraryType": "Default",
+              "cudaType": "Default",
+              "determinsitic": "Unknown",
+              "printType": "Default",
+              "solveType": "Default"
+            },
+            "pkg": "ANONYMOUS",
+            "annotations": {
+              "base": {}
+            },
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            }
+          }
+        }
+      ],
+      "structs": [],
+      "specialAsserts": [],
+      "origin": {
+        "name": "ANONYMOUS",
+        "vars": [],
+        "funcs": [
+          {
+            "fixes": [],
+            "name": "doubleSketch",
+            "returnType": {
+              "type": 9,
+              "memtyp": "UNDEFINED"
+            },
+            "params": [
+              {
+                "type": {
+                  "type": 4,
+                  "memtyp": "UNDEFINED"
+                },
+                "name": "x",
+                "partype": 0,
+                "srcTupleDepth": -1,
+                "isImplicit": false,
+                "context": {
+                  "fileName": "hello.sk",
+                  "lineNumber": 1,
+                  "columnNumber": -1,
+                  "file": "hello.sk:1"
+                }
+              }
+            ],
+            "typeParams": [],
+            "body": {
+              "stmts": [
+                {
+                  "types": [
+                    {
+                      "type": 4,
+                      "memtyp": "UNDEFINED"
+                    }
+                  ],
+                  "names": [
+                    "t"
+                  ],
+                  "inits": [
+                    {
+                      "op": 3,
+                      "left": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      },
+                      "right": {
+                        "size": 5,
+                        "rangelow": 0,
+                        "rangehigh": 0,
+                        "frangelow": 0,
+                        "frangehigh": 0,
+                        "hasrange": false,
+                        "isFixed": false,
+                        "type": {
+                          "type": 4,
+                          "memtyp": "UNDEFINED"
+                        },
+                        "INT_SIZE": 5,
+                        "isGlobal": false,
+                        "starName": "H__0",
+                        "typeWasSetByScala": false,
+                        "kind": "NORMAL",
+                        "isSpecial": false,
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 2,
+                        "columnNumber": -1,
+                        "file": "hello.sk:2"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 2,
+                          "columnNumber": -1,
+                          "file": "hello.sk:2"
+                        }
+                      }
+                    }
+                  ],
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 2,
+                    "columnNumber": -1,
+                    "file": "hello.sk:2"
+                  }
+                },
+                {
+                  "cond": {
+                    "op": 8,
+                    "left": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    },
+                    "right": {
+                      "op": 1,
+                      "left": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      },
+                      "right": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      },
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      },
+                      "origin": {
+                        "name": "x",
+                        "context": {
+                          "fileName": "hello.sk",
+                          "lineNumber": 3,
+                          "columnNumber": -1,
+                          "file": "hello.sk:3"
+                        }
+                      }
+                    },
+                    "context": {
+                      "fileName": "hello.sk",
+                      "lineNumber": 3,
+                      "columnNumber": -1,
+                      "file": "hello.sk:3"
+                    },
+                    "origin": {
+                      "name": "t",
+                      "context": {
+                        "fileName": "hello.sk",
+                        "lineNumber": 3,
+                        "columnNumber": -1,
+                        "file": "hello.sk:3"
+                      }
+                    }
+                  },
+                  "isHard": false,
+                  "superA": 0,
+                  "isMax": 0,
+                  "_my_rand": 3,
+                  "context": {
+                    "fileName": "hello.sk",
+                    "lineNumber": 3,
+                    "columnNumber": -1,
+                    "file": "hello.sk:3"
+                  }
+                }
+              ],
+              "context": {
+                "fileName": "hello.sk",
+                "lineNumber": 1,
+                "columnNumber": -1,
+                "file": "hello.sk:1"
+              }
+            },
+            "fcnInfo": {
+              "fcnType": "Harness",
+              "libraryType": "Default",
+              "cudaType": "Default",
+              "determinsitic": "Unknown",
+              "printType": "Default",
+              "solveType": "Default"
+            },
+            "pkg": "ANONYMOUS",
+            "annotations": {
+              "base": {}
+            },
+            "context": {
+              "fileName": "hello.sk",
+              "lineNumber": 1,
+              "columnNumber": -1,
+              "file": "hello.sk:1"
+            }
+          }
+        ],
+        "structs": [],
+        "specialAsserts": []
+      }
+    }
+  ],
+  "directives": [],
+  "origin": {
+    "packages": [],
+    "directives": []
+  }
+}
