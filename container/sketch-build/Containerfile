@@ -1,7 +1,7 @@
 FROM docker.io/library/gcc:13-bookworm
 
-ENV JAVA_HOME=/opt/java/openjdk
+ENV JAVA_HOME=/opt/java/openjdk PATH="${JAVA_HOME}/bin:${PATH}" JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8"
 COPY --from=eclipse-temurin:8 $JAVA_HOME $JAVA_HOME
-ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 RUN apt update && apt install -y flex bison cmake maven ant && apt-get clean
+COPY --chmod=755 patch-frontend /usr/local/bin
