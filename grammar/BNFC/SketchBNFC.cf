@@ -3,212 +3,212 @@
 
 Prog . Program ::= [TopDecl] ;
 
-_          . TopDecl ::= PkgDecl ;
-_          . TopDecl ::= IncludeStmt ;
-PackageStmt. TopDecl ::= "package" Id ";" ;
-InlinePkg  . TopDecl ::= "package" Id PkgBody ;
-_          . TopDecl ::= PragmaStmt ;
+TopDecl     . TopDecl ::= PkgDecl ;
+TopInclude  . TopDecl ::= IncludeStmt ;
+TopPkgStmt  . TopDecl ::= "package" Id ";" ;
+TopInlinePkg. TopDecl ::= "package" Id PkgBody ;
+TopPragma   . TopDecl ::= PragmaStmt ;
 
-InlinePkgBlock. PkgBody ::= "{" [PkgDecl] "}" ;
+PkgBody. PkgBody ::= "{" [PkgDecl] "}" ;
 
-_            . PkgDecl ::= FunctionDecl ;
-FieldDeclTerm. PkgDecl ::= FieldDecl ";" ;
-_            . PkgDecl ::= StructDecl ;
-_            . PkgDecl ::= ADTDecl ;
-_            . PkgDecl ::= SpecialAssertStmt ;
+PkgFunc  . PkgDecl ::= FunctionDecl ;
+PkgField . PkgDecl ::= FieldDecl ";" ;
+PkgStruct. PkgDecl ::= StructDecl ;
+PkgADT   . PkgDecl ::= ADTDecl ;
+PkgAsrt  . PkgDecl ::= SpecialAssertStmt ;
 
-IncludeStmt. IncludeStmt ::= "include" String ";" ;
+Include. IncludeStmt ::= "include" String ";" ;
 
-PragmaStmt   . PragmaStmt ::= "pragma" Id ";" ;
-PragmaStmtArg. PragmaStmt ::= "pragma" Id String ";" ;
+Pragma   . PragmaStmt ::= "pragma" Id ";" ;
+PragmaArg. PragmaStmt ::= "pragma" Id String ";" ;
 
-FieldDecl. FieldDecl ::= VarDecl;
+Field. FieldDecl ::= VarDecl;
 
-_                . Stmt ::= LoopStmt ;
-_                . Stmt ::= MinRepeatStmt ;
-_                . Stmt ::= ForkStmt ;
-_                . Stmt ::= SPMDForkStmt ;
-_                . Stmt ::= ParForStmt ;
-_                . Stmt ::= InsertBlock ;
-_                . Stmt ::= ReorderBlock ;
-_                . Stmt ::= AtomicBlock ;
-_                . Stmt ::= Block ;
-_                . Stmt ::= FDeclStmt ;
-VarDeclStmt      . Stmt ::= VarDecl ";" ;
-ExprStmtTerm     . Stmt ::= ExprStmt ";" ;
-BreakStmt        . Stmt ::= "break" ";" ;
-ContStmt         . Stmt ::= "continue" ";" ;
-_                . Stmt ::= SwitchStmt ;
-_                . Stmt ::= IfElseStmt ;
-_                . Stmt ::= WhileStmt ;
-DoWhileStmtTerm  . Stmt ::= DoWhileStmt ";" ;
-_                . Stmt ::= ForStmt ;
-AssumeStmtTerm   . Stmt ::= AssumeStmt ";" ;
-AssertStmtTerm   . Stmt ::= AssertStmt ";" ;
-AssertMaxStmtTerm. Stmt ::= AssertMaxStmt ";" ;
-HAssertStmtTerm  . Stmt ::= HAssertStmt ";" ;
-ReturnStmtTerm   . Stmt ::= ReturnStmt ";" ;
-EmptyStmt        . Stmt ::= ";" ;
+StmtLoop     . Stmt ::= LoopStmt ;
+StmtMinRepeat. Stmt ::= MinRepeatStmt ;
+StmtFork     . Stmt ::= ForkStmt ;
+StmtSPMDFork . Stmt ::= SPMDForkStmt ;
+StmtParFor   . Stmt ::= ParForStmt ;
+StmtInsert   . Stmt ::= InsertBlock ;
+StmtReorder  . Stmt ::= ReorderBlock ;
+StmtAtomic   . Stmt ::= AtomicBlock ;
+StmtBlock    . Stmt ::= Block ;
+StmtFDecl    . Stmt ::= FDeclStmt ;
+StmtVarDecl  . Stmt ::= VarDecl ";" ;
+StmtExpr     . Stmt ::= ExprStmt ";" ;
+StmtBreak    . Stmt ::= "break" ";" ;
+StmtCont     . Stmt ::= "continue" ";" ;
+StmtSwitch   . Stmt ::= SwitchStmt ;
+StmtIfElse   . Stmt ::= IfElseStmt ;
+StmtWhile    . Stmt ::= WhileStmt ;
+StmtDoWhile  . Stmt ::= DoWhileStmt ";" ;
+StmtFor      . Stmt ::= ForStmt ;
+StmtAssume   . Stmt ::= AssumeStmt ";" ;
+StmtAssert   . Stmt ::= AssertStmt ";" ;
+StmtAssertMax. Stmt ::= AssertMaxStmt ";" ;
+StmtHAssert  . Stmt ::= HAssertStmt ";" ;
+StmtReturn   . Stmt ::= ReturnStmt ";" ;
+StmtEmpty    . Stmt ::= ";" ;
 
-FDeclStmt. FDeclStmt ::= FunctionDecl ;
+FDecl. FDeclStmt ::= FunctionDecl ;
 
-LoopStmtId  . LoopStmt ::= "loop" "(" Id ":" RightExpr ")" PseudoBlock ;
-RepeatStmtId. LoopStmt ::= "repeat" "(" Id ":" RightExpr ")" PseudoBlock ;
-LoopStmt    . LoopStmt ::= "loop" "(" RightExpr ")" PseudoBlock ;
-RepeatStmt  . LoopStmt ::= "repeat" "(" RightExpr ")" PseudoBlock ;
+LoopId  . LoopStmt ::= "loop" "(" Id ":" RightExpr ")" PseudoBlock ;
+RepeatId. LoopStmt ::= "repeat" "(" Id ":" RightExpr ")" PseudoBlock ;
+Loop    . LoopStmt ::= "loop" "(" RightExpr ")" PseudoBlock ;
+Repeat  . LoopStmt ::= "repeat" "(" RightExpr ")" PseudoBlock ;
 
-MinRepeatStmt. MinRepeatStmt ::= "minrepeat" PseudoBlock ;
+MinRepeat. MinRepeatStmt ::= "minrepeat" PseudoBlock ;
 
-ForkStmt. ForkStmt ::= "fork" "(" VarDecl ";" RightExpr ")" PseudoBlock ;
+Fork. ForkStmt ::= "fork" "(" VarDecl ";" RightExpr ")" PseudoBlock ;
 
-SPMDForkStmt  . SPMDForkStmt ::= "spmdfork" "(" RightExpr ")" PseudoBlock ;
-SPMDForkStmtId. SPMDForkStmt ::= "spmdfork" "(" Id ";" RightExpr ")" PseudoBlock ;
+SPMDFork  . SPMDForkStmt ::= "spmdfork" "(" RightExpr ")" PseudoBlock ;
+SPMDForkId. SPMDForkStmt ::= "spmdfork" "(" Id ";" RightExpr ")" PseudoBlock ;
 
-ParForStmt. ParForStmt ::= "parfor" "(" VarExpr "<-" RangeExp ")" PseudoBlock ;
+ParFor. ParForStmt ::= "parfor" "(" VarExpr "<-" RangeExp ")" PseudoBlock ;
 
-RangeExp  . RangeExp ::= RightExpr "until" RightExpr ;
-RangeExpBy. RangeExp ::= RightExpr "until" RightExpr "by" RightExpr;
+Range  . RangeExp ::= RightExpr "until" RightExpr ;
+RangeBy. RangeExp ::= RightExpr "until" RightExpr "by" RightExpr;
 
-TypeParamsUse    . TypeParamsUse ::= "<" QualId "<" DataType ">>" ;
-TypeParamsUseBare. TypeParamsUse ::= "<" [DataType] ">" ;
+TypeParamId  . TypeParamsUse ::= "<" QualId "<" DataType ">>" ;
+TypeParamBare. TypeParamsUse ::= "<" [DataType] ">" ;
 
 QualId. QualId ::= Id "@" Id ;
-_     . QualId ::= Id ;
+NormId. QualId ::= Id ;
 
-DataTypeGlobal. DataType ::= "global" DataTypeMain ;
-_             . DataType ::= DataTypeMain ;
-DataTypeVoid  . DataType ::= "void" ;
-_               . DataTypeMain ::= DataTypeSpec [DataTypeParamList] ; 
-DataTypeParamUse. DataTypeMain ::= DataTypeSpec TypeParamsUse [DataTypeParamList] ;
-_. DataTypeParamList  ::= "[" [DataTypeParm] "]" ;
-_                   . DataTypeParm ::= ExprNamedParam ;
+GlobalDataType. DataType ::= "global" DataTypeMain ;
+NormalDataType. DataType ::= DataTypeMain ;
+VoidDataType  . DataType ::= "void" ;
+DataTypeNoParam  . DataTypeMain ::= DataTypeSpec [DataTypeParamList] ; 
+DataTypeWithParam. DataTypeMain ::= DataTypeSpec TypeParamsUse [DataTypeParamList] ;
+DataTypeParamList. DataTypeParamList  ::= "[" [DataTypeParm] "]" ;
+DataTypeParam       . DataTypeParm ::= ExprNamedParam ;
 DataTypeParamBounded. DataTypeParm ::= ExprNamedParam "<:" Number ;
 
-_. PrimitiveType ::= "boolean" ;
-_. PrimitiveType ::= "bit" ;
-_. PrimitiveType ::= "int" ;
-_. PrimitiveType ::= "float" ;
-_. PrimitiveType ::= "double" ;
-_. PrimitiveType ::= "fun" ;
-_. PrimitiveType ::= "char" ;
+Boolean. PrimitiveType ::= "boolean" ;
+Bit    . PrimitiveType ::= "bit" ;
+Int    . PrimitiveType ::= "int" ;
+Float  . PrimitiveType ::= "float" ;
+Double . PrimitiveType ::= "double" ;
+Fun    . PrimitiveType ::= "fun" ;
+Char   . PrimitiveType ::= "char" ;
 
 VarDecl. VarDecl ::= DataType [VarAssign] ;
-_        . VarAssign ::= Id ;
-VarAssign. VarAssign ::= Id "=" ExprOrLambda ; 
+VarNoAssign. VarAssign ::= Id ;
+VarAssign  . VarAssign ::= Id "=" ExprOrLambda ; 
 
-_. ExprOrLambda ::= LambdaExpr ;
-_. ExprOrLambda ::= RightExpr ;
+OptLambda. ExprOrLambda ::= LambdaExpr ;
+OptExpr  . ExprOrLambda ::= RightExpr ;
 
 Anno     . Anno ::= "@" Id "(" String ")" ;
 AnnoEmpty. Anno ::= "@" Id "(" ")" ;
 
 TypeParams. TypeParams ::= "<" [TypeParam] ">" ;
-_. TypeParam ::= Id ;
+TypeParam. TypeParam ::= Id ;
 
-FuncDeclBody. FunctionDecl ::= FuncDeclMain Block ;
-FuncDeclOnly. FunctionDecl ::= FuncDeclMain ";" ;
-_. FuncDeclMain ::=
+FDeclWithBody. FunctionDecl ::= FuncDeclMain Block ;
+FDeclOnly    . FunctionDecl ::= FuncDeclMain ";" ;
+FDeclMain. FuncDeclMain ::=
     [Anno] [FuncMod] ReturnType Id OptionalTypeParams ParamDeclList FuncImpl FuncFixes ;
-_. FuncMod ::= "serial" ;
-_. FuncMod ::= "harness" ;
-_. FuncMod ::= "generator" ;
-_. FuncMod ::= "stencil" ;
-_. FuncMod ::= "model" ;
-_                 . OptionalTypeParams ::= ;
-OptionalTypeParams. OptionalTypeParams ::= TypeParams ;
-_       . FuncImpl ::= ;
-FuncImpl. FuncImpl ::= "implements" Id ;
-_        . FuncFixes ::= ;
-FuncFixes. FuncFixes ::= "fixes" Id ;
+Serial   . FuncMod ::= "serial" ;
+Harness  . FuncMod ::= "harness" ;
+Generator. FuncMod ::= "generator" ;
+Stencil  . FuncMod ::= "stencil" ;
+Model    . FuncMod ::= "model" ;
+TypeParamsEmpty. OptionalTypeParams ::= ;
+TypeParamsOpt  . OptionalTypeParams ::= TypeParams ;
+FuncImplEmpty. FuncImpl ::= ;
+FuncImpl     . FuncImpl ::= "implements" Id ;
+FunFixesEmpty. FuncFixes ::= ;
+FuncFixes    . FuncFixes ::= "fixes" Id ;
 
 ReturnType. ReturnType ::= DataType ;
 
-ParamDeclList    . ParamDeclList ::= "(" [ParamDecl] ")" ;
-ParamDeclListImpl. ParamDeclList ::= "(" ImplParam [ParamDecl] ")" ;
+PDeclList    . ParamDeclList ::= "(" [ParamDecl] ")" ;
+PDeclImplList. ParamDeclList ::= "(" ImplParam [ParamDecl] ")" ;
 
 ImplParam. ImplParam ::= "[" [ImplParamItem] "]" ;
 ImplParamItem. ImplParamItem ::= "int" Id ;
 
-ParamDecl   . ParamDecl ::= DataType Id ;
-ParamDeclRef. ParamDecl ::= "ref" DataType Id ;
+PDecl   . ParamDecl ::= DataType Id ;
+PDeclRef. ParamDecl ::= "ref" DataType Id ;
 
 Block. Block ::= "{" [Stmt] "}" ;
 
-InsertBlock. InsertBlock ::=  "insert" Block "into" Block ;
+Insert. InsertBlock ::=  "insert" Block "into" Block ;
 
-ReorderBlock. ReorderBlock ::= "reorder" Block ;
+Reorder. ReorderBlock ::= "reorder" Block ;
 
-AtomicBlock     . AtomicBlock ::= "atomic" Block ;
-AtomicBlockValue. AtomicBlock ::= "atomic" "(" RightExpr ")" Block ;
+Atomic   . AtomicBlock ::= "atomic" Block ;
+AtomicVal. AtomicBlock ::= "atomic" "(" RightExpr ")" Block ;
 
-_. PseudoBlock ::= Stmt ;
+PseudoBlock. PseudoBlock ::= Stmt ;
 
-ReturnStmt     . ReturnStmt ::= "return" ;
-ReturnStmtValue. ReturnStmt ::= "return" RightExpr ;
+Return   . ReturnStmt ::= "return" ;
+ReturnVal. ReturnStmt ::= "return" RightExpr ;
 
-AssumeStmtSimple. AssumeStmtSimple ::= "assume" RightExpr ;
-_            . AssumeStmt ::= AssumeStmtSimple ;
-AssumeStmtMsg. AssumeStmt ::= AssumeStmtSimple ":" String ;
+AssmSimple. AssumeStmtSimple ::= "assume" RightExpr ;
+AssmNoMsg. AssumeStmt ::= AssumeStmtSimple ;
+AssmMsg  . AssumeStmt ::= AssumeStmtSimple ":" String ;
 
-AssertStmtSimple. AssertStmtSimple ::= "assert" RightExpr ; 
-SpecialAssertStmt. SpecialAssertStmt ::=
+AsrtSimple. AssertStmtSimple ::= "assert" RightExpr ; 
+SpecialAsrt. SpecialAssertStmt ::=
     SpecialAssertLet "{" SpecialAssertAssume [AssertStmtSimple] "}" ;
-SpecialAssertLet      . SpecialAssertLet ::= "let" ;
-SpecialAssertLetAssign. SpecialAssertLet ::= "let" [VarAssignExpr] ;
+SpecialAsrtLet      . SpecialAssertLet ::= "let" ;
+SpecialAsrtLetAssign. SpecialAssertLet ::= "let" [VarAssignExpr] ;
 VarAssignExpr. VarAssignExpr ::= Id "=" RightExpr ;
-_                  . SpecialAssertAssume ::= ;
-SpecialAssertAssume. SpecialAssertAssume ::= "assume" RightExpr ;
+SpecialAsrtAssmEmpty. SpecialAssertAssume ::= ;
+SpecialAsrtAssm     . SpecialAssertAssume ::= "assume" RightExpr ;
 
-AssertStmt   . AssertStmt ::= AssertStmtCore ;
-AssertStmtMsg. AssertStmt ::= AssertStmtCore ":" String ;
-AssertStmtCore  . AssertStmtCore ::= "assert" RightExpr ;
-HDAssertStmtCore. AssertStmtCore ::= "h_assert" RightExpr ;
+Asrt   . AssertStmt ::= AssertStmtCore ;
+AsrtMsg. AssertStmt ::= AssertStmtCore ":" String ;
+AsrtCore  . AssertStmtCore ::= "assert" RightExpr ;
+HDAsrtCore. AssertStmtCore ::= "h_assert" RightExpr ;
 
-HAssertStmt   . HAssertStmt ::= "hassert" RightExpr ;
-HAssertStmtMsg. HAssertStmt ::= "hassert" RightExpr ":" String ;
+HAsrt   . HAssertStmt ::= "hassert" RightExpr ;
+HAsrtMsg. HAssertStmt ::= "hassert" RightExpr ":" String ;
 
-AssertMaxStmt   . AssertMaxStmt ::= AssertMaxStmtCore ;
-AssertMaxStmtMsg. AssertMaxStmt ::= AssertMaxStmtCore ":" String ;
-AssertMaxStmtCore     . AssertMaxStmtCore ::= "assert_max" RightExpr ;
-AssertMaxStmtCoreDefer. AssertMaxStmtCore ::= "assert_max" "\\" RightExpr ;
+AsrtMax   . AssertMaxStmt ::= AssertMaxStmtCore ;
+AsrtMaxMsg. AssertMaxStmt ::= AssertMaxStmtCore ":" String ;
+AsrtMaxCore     . AssertMaxStmtCore ::= "assert_max" RightExpr ;
+AsrtMaxCoreRefer. AssertMaxStmtCore ::= "assert_max" "\\" RightExpr ;
 
-SwitchStmt. SwitchStmt ::=
+Switch. SwitchStmt ::=
     "switch" "(" Id ")" "{" [SwitchStmtCase] SwitchStmtFallThru "}" ;
-SwitchStmtCase. SwitchStmtCase ::= "case" Id ":" PseudoBlock ;
-_                   . SwitchStmtFallThru ::= ;
-SwitchStmtDefault   . SwitchStmtFallThru ::= "default" ":" PseudoBlock ;
-SwitchStmtRepeatCase. SwitchStmtFallThru ::= "repeat_case" ":" PseudoBlock ;
+SwitchCase. SwitchStmtCase ::= "case" Id ":" PseudoBlock ;
+SwitchDefaultEmpty. SwitchStmtFallThru ::= ;
+SwitchDefault     . SwitchStmtFallThru ::= "default" ":" PseudoBlock ;
+SwitchRepeatCase  . SwitchStmtFallThru ::= "repeat_case" ":" PseudoBlock ;
 
-IfStmt. IfStmt ::= "if" "(" RightExpr ")" PseudoBlock ;
-_         . IfElseStmt ::= IfStmt;
-IfElseStmt. IfElseStmt ::= IfStmt "else" PseudoBlock ;
+If. IfStmt ::= "if" "(" RightExpr ")" PseudoBlock ;
+IfOnly. IfElseStmt ::= IfStmt;
+IfElse. IfElseStmt ::= IfStmt "else" PseudoBlock ;
 
-WhileStmt. WhileStmt ::= "while" "(" RightExpr ")" PseudoBlock ;
+While. WhileStmt ::= "while" "(" RightExpr ")" PseudoBlock ;
 
-DoWhileStmt. DoWhileStmt ::= "do" PseudoBlock "while" "(" RightExpr ")" ;
+DoWhile. DoWhileStmt ::= "do" PseudoBlock "while" "(" RightExpr ")" ;
 
-ForStmt. ForStmt ::=
+For. ForStmt ::=
     "for" "(" ForInitStmt ";" ForCondStmt ";" ForIncrStmt ")" PseudoBlock ;
-ForCondStmt   . ForCondStmt ::= RightExpr ;
-ForCondStmtInf. ForCondStmt ::= ;
+ForCond   . ForCondStmt ::= RightExpr ;
+ForCondInf. ForCondStmt ::= ;
 
-ForInitStmtNone. ForInitStmt ::= ;
-ForInitStmtDecl. ForInitStmt ::= VarDecl ;
-ForInitStmtExpr. ForInitStmt ::= ExprStmt;
+ForInitEmpty. ForInitStmt ::= ;
+ForInitDecl . ForInitStmt ::= VarDecl ;
+ForInitExpr . ForInitStmt ::= ExprStmt;
 
-ForIncrStmtNone. ForIncrStmt ::= ;
-ForIncrStmt    . ForIncrStmt ::= ExprStmt ;
+ForIncrEmpty. ForIncrStmt ::= ;
+ForIncr     . ForIncrStmt ::= ExprStmt ;
 
-ExprStmt. ExprStmt ::= AssignExpr ;
+Expr. ExprStmt ::= AssignExpr ;
 
-_                 . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
+AssignExpr        . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
 AssignExprNoAssign. AssignExpr ::= PrefixExpr ;
-_. AssignOp ::= "=" ;
-_. AssignOp ::= "+=" ;
-_. AssignOp ::= "-=" ;
-_. AssignOp ::= "*=" ;
-_. AssignOp ::= "/=" ;
-_. AssignOp ::= ".=" ;
+AssignOp      . AssignOp ::= "=" ;
+PlusAssignOp  . AssignOp ::= "+=" ;
+MinusAssignOp . AssignOp ::= "-=" ;
+MultiAssignOp . AssignOp ::= "*=" ;
+DivideAssignOp. AssignOp ::= "/=" ;
+DotAssignOp   . AssignOp ::= ".=" ;
 
 FuncCall. FuncCall ::= QualId FuncCallParams ;
 
@@ -218,8 +218,8 @@ ExprGetParams. ExprGetParams ::= [ExprNamedParam] ;
 
 FuncCallParams. FuncCallParams ::= "(" [ExprNamedParam] ")" ;
 
-LambdaExpr. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
-_. LambdaParam ::= Id ;
+Lambda. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
+LambdaParam. LambdaParam ::= Id ;
 
 ConstrParams     . ConstrParams ::= "(" [ExprNamedParamMixed] ")" ;
 []        . [ExprNamedParamMixed] ::= ;
@@ -229,9 +229,9 @@ ConstrParams     . ConstrParams ::= "(" [ExprNamedParamMixed] ")" ;
 ExprNamedParamAssign. ExprNamedParam ::= Id "=" ExprOrLambda ;
 ExprNamedParam      . ExprNamedParam ::= ExprOrLambda ;
 
-_. RightExprNotAgmax ::= TernaryExpr ;
+RightExprNotAgmax. RightExprNotAgmax ::= TernaryExpr ;
 
-_. RightExpr ::= RightExprNotAgmax ;
+RightExpr. RightExpr ::= RightExprNotAgmax ;
 
 ArrInit. ArrInit ::= "{" [RightExpr] "}" ;
 
