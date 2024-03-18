@@ -147,8 +147,8 @@ ReturnStmt     . ReturnStmt ::= "return" ;
 ReturnStmtValue. ReturnStmt ::= "return" RightExpr ;
 
 AssumeStmtSimple. AssumeStmtSimple ::= "assume" RightExpr ;
-AssumeStmt   . ::= AssumeStmtSimple ;
-AssumeStmtMsg. ::= AssumeStmtSimple ":" String ;
+_            . AssumeStmt ::= AssumeStmtSimple ;
+AssumeStmtMsg. AssumeStmt ::= AssumeStmtSimple ":" String ;
 
 AssertStmtSimple. AssertStmtSimple ::= "assert" RightExpr ; 
 SpecialAssertStmt. SpecialAssertStmt ::=
@@ -201,8 +201,8 @@ ForIncrStmt    . ForIncrStmt ::= ExprStmt ;
 
 ExprStmt. ExprStmt ::= AssignExpr ;
 
-AssignExpr        . ::= PrefixExpr AssignOp ExprOrLambda ;
-AssignExprNoAssign. ::= PrefixExpr ;
+_                 . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
+AssignExprNoAssign. AssignExpr ::= PrefixExpr ;
 _. AssignOp ::= "=" ;
 _. AssignOp ::= "+=" ;
 _. AssignOp ::= "-=" ;
@@ -216,7 +216,7 @@ ExprGet. ExprGet ::= "??" "(" "{" ExprGetParams "}" ")" ;
 
 ExprGetParams. ExprGetParams ::= [ExprNamedParam] ;
 
-FuncCallParams ::= "(" [ExprNamedParam] ")" ;
+FuncCallParams. FuncCallParams ::= "(" [ExprNamedParam] ")" ;
 
 LambdaExpr. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
 _. LambdaParam ::= Id ;
@@ -224,7 +224,7 @@ _. LambdaParam ::= Id ;
 ConstrParams     . ConstrParams ::= "(" [ExprNamedParamMixed] ")" ;
 []        . [ExprNamedParamMixed] ::= ;
 (:[])     . [ExprNamedParamMixed] ::= VarAssignExpr ;
-(flip (:)). [ExprNamedParamMixed] ::= [ExprNamedParamMixed] "," ExprNamedParam ;
+(:). [ExprNamedParamMixed] ::= [ExprNamedParamMixed] "," ExprNamedParam ;
 
 ExprNamedParamAssign. ExprNamedParam ::= Id "=" ExprOrLambda ;
 ExprNamedParam      . ExprNamedParam ::= ExprOrLambda ;
@@ -330,7 +330,7 @@ _         . TminicValueExpr ::= Regen;
 -- string in as is and processes it later.
 -- We handle this similarly by parsing the inners of Regen expressions as token
 -- streams and leave it to be processed later.
-Regen. Regen ::= "{|" [RegenBranch] "|}"
+Regen. Regen ::= "{|" [RegenBranch] "|}" ;
 RegenBranch    . RegenBranch ::=  "(" [RegenToken] ")" ;
 RegenBranchNoOr. RegenBranch ::=  [RegenTokenNoOr] ;
 
@@ -373,7 +373,7 @@ _           . ADTBodyItem ::= StructInsideADTDecl ;
 ADTParamDecl. ADTBodyItem ::= ParamDecl ";" ;
 _           . ADTBodyItem ::= Anno ;
 
-StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
+StructInsideADTDecl. StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
 _. StructBodyItem ::= ParamDecl ";" ;
 _. StructBodyItem ::= Anno ;
 
@@ -389,7 +389,7 @@ _. RegenToken ::= RegenTokenNoOr ;
 NestedRegen. RegenTokenNoOr ::= Regen ;
 _          . RegenTokenNoOr ::= Id ;
 
--- List Macro Defs
+-- List Defs
 
 terminator TopDecl "" ;
 terminator PkgDecl "" ;
@@ -414,11 +414,16 @@ separator nonempty LogicAndExprItem "&&" ;
 separator nonempty BitwiseOrExprItem "|" ;
 separator nonempty BitWiseXorExprItem "^" ;
 separator nonempty BitWiseAndExprItem "&" ;
-separator nonempty EqualExprItem EqualOp ;
-separator nonempty CompareExprItem CompareOp ;
-separator nonempty ShiftExprItem ShiftOp ;
-separator nonempty AddExprItem AddOp ;
-separator nonempty MultExprItem MultOp ;
+(:[]). [EqualExprItem] ::= EqualExprItem ;
+(:)  . [EqualExprItem] ::= EqualExprItem EqualOp [EqualExprItem] ;
+(:[]). [CompareExprItem] ::= CompareExprItem ;
+(:)  . [CompareExprItem] ::= CompareExprItem CompareOp [CompareExprItem] ;
+(:[]). [ShiftExprItem] ::= ShiftExprItem ;
+(:)  . [ShiftExprItem] ::= ShiftExprItem ShiftOp [ShiftExprItem] ;
+(:[]). [AddExprItem] ::= AddExprItem ;
+(:)  . [AddExprItem] ::= AddExprItem AddOp [AddExprItem] ;
+(:[]). [MultExprItem] ::= MultExprItem ;
+(:)  . [MultExprItem] ::= MultExprItem MultOp [MultExprItem] ;
 terminator PostfixIncr "" ;
 terminator PrimaryPostfix "" ;
 separator RegenBranch "|" ;
