@@ -203,12 +203,6 @@ Expr. ExprStmt ::= AssignExpr ;
 
 AssignExpr        . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
 AssignExprNoAssign. AssignExpr ::= PrefixExpr ;
-AssignOp      . AssignOp ::= "=" ;
-PlusAssignOp  . AssignOp ::= "+=" ;
-MinusAssignOp . AssignOp ::= "-=" ;
-MultiAssignOp . AssignOp ::= "*=" ;
-DivideAssignOp. AssignOp ::= "/=" ;
-DotAssignOp   . AssignOp ::= ".=" ;
 
 FuncCall. FuncCall ::= QualId FuncCallParams ;
 
@@ -442,3 +436,6 @@ token Id (((letter|'_') (letter|digit|'_')*)|
     {"op.+"}| {"op.-"}| {"op.*"}| {"op./"}| {"op.%"}| {"op.="}| {"op.<"}) ;
 token Number (digit+ ('.' digit+)? (('e'|'E') ('+'|'-')? digit+)? 'i'? ) ;
 token HQuan {"0x"} ( digit | ["abcdefABCDEF"] )+ ;
+
+-- Op Tokens for easier expression handling as lists
+token AssignOp '=' | {"+="} | {"-="} | {"*="} | {"/="} | {".="} ;
