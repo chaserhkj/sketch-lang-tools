@@ -1,0 +1,439 @@
+-- Grammar for the Sketch language in BNFC format
+-- For more info see https://bnfc.digitalgrammars.com/
+
+Prog . Program ::= [TopDecl] ;
+
+_          . TopDecl ::= PkgDecl ;
+_          . TopDecl ::= IncludeStmt ;
+PackageStmt. TopDecl ::= "package" Id ";" ;
+InlinePkg  . TopDecl ::= "package" Id PkgBody ;
+_          . TopDecl ::= PragmaStmt ;
+
+InlinePkgBlock. PkgBody ::= "{" [PkgDecl] "}" ;
+
+_            . PkgDecl ::= FunctionDecl ;
+FieldDeclTerm. PkgDecl ::= FieldDecl ";" ;
+_            . PkgDecl ::= StructDecl ;
+_            . PkgDecl ::= ADTDecl ;
+_            . PkgDecl ::= SpecialAssertStmt ;
+
+IncludeStmt. IncludeStmt ::= "include" String ";" ;
+
+PragmaStmt   . PragmaStmt ::= "pragma" Id ";" ;
+PragmaStmtArg. PragmaStmt ::= "pragma" Id String ";" ;
+
+FieldDecl. FieldDecl ::= VarDecl;
+
+_                . Stmt ::= LoopStmt ;
+_                . Stmt ::= MinRepeatStmt ;
+_                . Stmt ::= ForkStmt ;
+_                . Stmt ::= SPMDForkStmt ;
+_                . Stmt ::= ParForStmt ;
+_                . Stmt ::= InsertBlock ;
+_                . Stmt ::= ReorderBlock ;
+_                . Stmt ::= AtomicBlock ;
+_                . Stmt ::= Block ;
+_                . Stmt ::= FDeclStmt ;
+VarDeclStmt      . Stmt ::= VarDecl ";" ;
+ExprStmtTerm     . Stmt ::= ExprStmt ";" ;
+BreakStmt        . Stmt ::= "break" ";" ;
+ContStmt         . Stmt ::= "continue" ";" ;
+_                . Stmt ::= SwitchStmt ;
+_                . Stmt ::= IfElseStmt ;
+_                . Stmt ::= WhileStmt ;
+DoWhileStmtTerm  . Stmt ::= DoWhileStmt ";" ;
+_                . Stmt ::= ForStmt ;
+AssumeStmtTerm   . Stmt ::= AssumeStmt ";" ;
+AssertStmtTerm   . Stmt ::= AssertStmt ";" ;
+AssertMaxStmtTerm. Stmt ::= AssertMaxStmt ";" ;
+HAssertStmtTerm  . Stmt ::= HAssertStmt ";" ;
+ReturnStmtTerm   . Stmt ::= ReturnStmt ";" ;
+EmptyStmt        . Stmt ::= ";" ;
+
+FDeclStmt. FDeclStmt ::= FunctionDecl ;
+
+LoopStmtId  . LoopStmt ::= "loop" "(" Id ":" RightExpr ")" PseudoBlock ;
+RepeatStmtId. LoopStmt ::= "repeat" "(" Id ":" RightExpr ")" PseudoBlock ;
+LoopStmt    . LoopStmt ::= "loop" "(" RightExpr ")" PseudoBlock ;
+RepeatStmt  . LoopStmt ::= "repeat" "(" RightExpr ")" PseudoBlock ;
+
+MinRepeatStmt. MinRepeatStmt ::= "minrepeat" PseudoBlock ;
+
+ForkStmt. ForkStmt ::= "fork" "(" VarDecl ";" RightExpr ")" PseudoBlock ;
+
+SPMDForkStmt  . SPMDForkStmt ::= "spmdfork" "(" RightExpr ")" PseudoBlock ;
+SPMDForkStmtId. SPMDForkStmt ::= "spmdfork" "(" Id ";" RightExpr ")" PseudoBlock ;
+
+ParForStmt. ParForStmt ::= "parfor" "(" VarExpr "<-" RangeExp ")" PseudoBlock ;
+
+RangeExp  . RangeExp ::= RightExpr "until" RightExpr ;
+RangeExpBy. RangeExp ::= RightExpr "until" RightExpr "by" RightExpr;
+
+TypeParamsUse    . TypeParamsUse ::= "<" QualId "<" DataType ">>" ;
+TypeParamsUseBare. TypeParamsUse ::= "<" [DataType] ">" ;
+
+QualId. QualId ::= Id "@" Id ;
+_     . QualId ::= Id ;
+
+DataTypeGlobal. DataType ::= "global" DataTypeMain ;
+_             . DataType ::= DataTypeMain ;
+DataTypeVoid  . DataType ::= "void" ;
+_               . DataTypeMain ::= DataTypeSpec [DataTypeParamList] ; 
+DataTypeParamUse. DataTypeMain ::= DataTypeSpec TypeParamsUse [DataTypeParamList] ;
+_. DataTypeParamList  ::= "[" [DataTypeParm] "]" ;
+_                   . DataTypeParm ::= ExprNamedParam ;
+DataTypeParamBounded. DataTypeParm ::= ExprNamedParam "<:" Number ;
+
+_. PrimitiveType ::= "boolean" ;
+_. PrimitiveType ::= "bit" ;
+_. PrimitiveType ::= "int" ;
+_. PrimitiveType ::= "float" ;
+_. PrimitiveType ::= "double" ;
+_. PrimitiveType ::= "fun" ;
+_. PrimitiveType ::= "char" ;
+
+VarDecl. VarDecl ::= DataType [VarAssign] ;
+_        . VarAssign ::= Id ;
+VarAssign. VarAssign ::= Id "=" ExprOrLambda ; 
+
+_. ExprOrLambda ::= LambdaExpr ;
+_. ExprOrLambda ::= RightExpr ;
+
+Anno     . Anno ::= "@" Id "(" String ")" ;
+AnnoEmpty. Anno ::= "@" Id "(" ")" ;
+
+TypeParams. TypeParams ::= "<" [TypeParam] ">" ;
+_. TypeParam ::= Id ;
+
+FuncDeclBody. FunctionDecl ::= FuncDeclMain Block ;
+FuncDeclOnly. FunctionDecl ::= FuncDeclMain ";" ;
+_. FuncDeclMain ::=
+    [Anno] [FuncMod] ReturnType Id OptionalTypeParams ParamDeclList FuncImpl FuncFixes ;
+_. FuncMod ::= "serial" ;
+_. FuncMod ::= "harness" ;
+_. FuncMod ::= "generator" ;
+_. FuncMod ::= "stencil" ;
+_. FuncMod ::= "model" ;
+_                 . OptionalTypeParams ::= ;
+OptionalTypeParams. OptionalTypeParams ::= TypeParams ;
+_       . FuncImpl ::= ;
+FuncImpl. FuncImpl ::= "implements" Id ;
+_        . FuncFixes ::= ;
+FuncFixes. FuncFixes ::= "fixes" Id ;
+
+ReturnType. ReturnType ::= DataType ;
+
+ParamDeclList    . ParamDeclList ::= "(" [ParamDecl] ")" ;
+ParamDeclListImpl. ParamDeclList ::= "(" ImplParam [ParamDecl] ")" ;
+
+ImplParam. ImplParam ::= "[" [ImplParamItem] "]" ;
+ImplParamItem. ImplParamItem ::= "int" Id ;
+
+ParamDecl   . ParamDecl ::= DataType Id ;
+ParamDeclRef. ParamDecl ::= "ref" DataType Id ;
+
+Block. Block ::= "{" [Stmt] "}" ;
+
+InsertBlock. InsertBlock ::=  "insert" Block "into" Block ;
+
+ReorderBlock. ReorderBlock ::= "reorder" Block ;
+
+AtomicBlock     . AtomicBlock ::= "atomic" Block ;
+AtomicBlockValue. AtomicBlock ::= "atomic" "(" RightExpr ")" Block ;
+
+_. PseudoBlock ::= Stmt ;
+
+ReturnStmt     . ReturnStmt ::= "return" ;
+ReturnStmtValue. ReturnStmt ::= "return" RightExpr ;
+
+AssumeStmtSimple. AssumeStmtSimple ::= "assume" RightExpr ;
+AssumeStmt   . ::= AssumeStmtSimple ;
+AssumeStmtMsg. ::= AssumeStmtSimple ":" String ;
+
+AssertStmtSimple. AssertStmtSimple ::= "assert" RightExpr ; 
+SpecialAssertStmt. SpecialAssertStmt ::=
+    SpecialAssertLet "{" SpecialAssertAssume [AssertStmtSimple] "}" ;
+SpecialAssertLet      . SpecialAssertLet ::= "let" ;
+SpecialAssertLetAssign. SpecialAssertLet ::= "let" [VarAssignExpr] ;
+VarAssignExpr. VarAssignExpr ::= Id "=" RightExpr ;
+_                  . SpecialAssertAssume ::= ;
+SpecialAssertAssume. SpecialAssertAssume ::= "assume" RightExpr ;
+
+AssertStmt   . AssertStmt ::= AssertStmtCore ;
+AssertStmtMsg. AssertStmt ::= AssertStmtCore ":" String ;
+AssertStmtCore  . AssertStmtCore ::= "assert" RightExpr ;
+HDAssertStmtCore. AssertStmtCore ::= "h_assert" RightExpr ;
+
+HAssertStmt   . HAssertStmt ::= "hassert" RightExpr ;
+HAssertStmtMsg. HAssertStmt ::= "hassert" RightExpr ":" String ;
+
+AssertMaxStmt   . AssertMaxStmt ::= AssertMaxStmtCore ;
+AssertMaxStmtMsg. AssertMaxStmt ::= AssertMaxStmtCore ":" String ;
+AssertMaxStmtCore     . AssertMaxStmtCore ::= "assert_max" RightExpr ;
+AssertMaxStmtCoreDefer. AssertMaxStmtCore ::= "assert_max" "\\" RightExpr ;
+
+SwitchStmt. SwitchStmt ::=
+    "switch" "(" Id ")" "{" [SwitchStmtCase] SwitchStmtFallThru "}" ;
+SwitchStmtCase. SwitchStmtCase ::= "case" Id ":" PseudoBlock ;
+_                   . SwitchStmtFallThru ::= ;
+SwitchStmtDefault   . SwitchStmtFallThru ::= "default" ":" PseudoBlock ;
+SwitchStmtRepeatCase. SwitchStmtFallThru ::= "repeat_case" ":" PseudoBlock ;
+
+IfStmt. IfStmt ::= "if" "(" RightExpr ")" PseudoBlock ;
+_         . IfElseStmt ::= IfStmt;
+IfElseStmt. IfElseStmt ::= IfStmt "else" PseudoBlock ;
+
+WhileStmt. WhileStmt ::= "while" "(" RightExpr ")" PseudoBlock ;
+
+DoWhileStmt. DoWhileStmt ::= "do" PseudoBlock "while" "(" RightExpr ")" ;
+
+ForStmt. ForStmt ::=
+    "for" "(" ForInitStmt ";" ForCondStmt ";" ForIncrStmt ")" PseudoBlock ;
+ForCondStmt   . ForCondStmt ::= RightExpr ;
+ForCondStmtInf. ForCondStmt ::= ;
+
+ForInitStmtNone. ForInitStmt ::= ;
+ForInitStmtDecl. ForInitStmt ::= VarDecl ;
+ForInitStmtExpr. ForInitStmt ::= ExprStmt;
+
+ForIncrStmtNone. ForIncrStmt ::= ;
+ForIncrStmt    . ForIncrStmt ::= ExprStmt ;
+
+ExprStmt. ExprStmt ::= AssignExpr ;
+
+AssignExpr        . ::= PrefixExpr AssignOp ExprOrLambda ;
+AssignExprNoAssign. ::= PrefixExpr ;
+_. AssignOp ::= "=" ;
+_. AssignOp ::= "+=" ;
+_. AssignOp ::= "-=" ;
+_. AssignOp ::= "*=" ;
+_. AssignOp ::= "/=" ;
+_. AssignOp ::= ".=" ;
+
+FuncCall. FuncCall ::= QualId FuncCallParams ;
+
+ExprGet. ExprGet ::= "??" "(" "{" ExprGetParams "}" ")" ;
+
+ExprGetParams. ExprGetParams ::= [ExprNamedParam] ;
+
+FuncCallParams ::= "(" [ExprNamedParam] ")" ;
+
+LambdaExpr. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
+_. LambdaParam ::= Id ;
+
+ConstrParams     . ConstrParams ::= "(" [ExprNamedParamMixed] ")" ;
+[]        . [ExprNamedParamMixed] ::= ;
+(:[])     . [ExprNamedParamMixed] ::= VarAssignExpr ;
+(flip (:)). [ExprNamedParamMixed] ::= [ExprNamedParamMixed] "," ExprNamedParam ;
+
+ExprNamedParamAssign. ExprNamedParam ::= Id "=" ExprOrLambda ;
+ExprNamedParam      . ExprNamedParam ::= ExprOrLambda ;
+
+_. RightExprNotAgmax ::= TernaryExpr ;
+
+_. RightExpr ::= RightExprNotAgmax ;
+
+ArrInit. ArrInit ::= "{" [RightExpr] "}" ;
+
+TernaryExprNone. TernaryExpr ::= LogicOrExpr ;
+TernaryExpr    . TernaryExpr ::= LogicOrExpr "?" TernaryExpr ":" TernaryExpr ;
+
+LogicOrExpr. LogicOrExpr ::= [LogicOrExprItem] ;
+_. LogicOrExprItem ::= LogicAndExpr ;
+
+LogicAndExpr. LogicAndExpr ::= [LogicAndExprItem] ;
+_. LogicAndExprItem ::= BitwiseOrExpr ;
+
+BitwiseOrExpr. BitwiseOrExpr ::= [BitwiseOrExprItem] ;
+_. BitwiseOrExprItem ::= BitWiseXorExpr ;
+
+BitWiseXorExpr. BitWiseXorExpr ::= [BitWiseXorExprItem];
+_. BitWiseXorExprItem ::= BitWiseAndExpr ;
+
+BitWiseAndExpr. BitWiseAndExpr ::= [BitWiseAndExprItem] ;
+_. BitWiseAndExprItem ::= EqualExpr;
+
+EqualExpr. EqualExpr ::= [EqualExprItem] ;
+_. EqualExprItem ::= CompareExpr;
+_. EqualOp ::= "==" ;
+_. EqualOp ::= "===" ;
+_. EqualOp ::= "!=" ;
+
+CompareExpr. CompareExpr ::= [CompareExprItem] ;
+_. CompareExprItem ::= ShiftExpr ;
+_. CompareOp ::= "<" ;
+_. CompareOp ::= "<=" ;
+_. CompareOp ::= ">" ;
+_. CompareOp ::= ">=" ;
+_. CompareOp ::= ".<" ;
+_. CompareOp ::= ".>" ;
+_. CompareOp ::= ".<=" ;
+_. CompareOp ::= ".>=" ;
+
+ShiftExpr. ShiftExpr ::= [ShiftExprItem] ;
+_. ShiftExprItem ::= AddExpr ;
+_. ShiftOp ::= "<<" ;
+_. ShiftOp ::= ">>" ;
+
+AddExpr. AddExpr ::= [AddExprItem];
+_. AddExprItem ::= MultExpr ;
+_. AddOp ::= "+" ;
+_. AddOp ::= "-" ;
+_. AddOp ::= "{|}" ;
+_. AddOp ::= ".+" ;
+_. AddOp ::= ".-" ;
+
+MultExpr. MultExpr ::= [MultExprItem];
+_. MultExprItem ::= PrefixExpr ;
+_. MultOp ::= "*" ;
+_. MultOp ::= "/" ;
+_. MultOp ::= "%" ;
+_. MultOp ::= ".*" ;
+_. MultOp ::= "./" ;
+_. MultOp ::= ".%" ;
+
+_              . PrefixExpr ::= PrefixExprNoMinus ;
+PrefixExprMinus. PrefixExpr ::= "-" PrefixExpr ;
+
+PrefixExprCast. PrefixExprNoMinus ::= CastExpr ;
+PrefixExprPost. PrefixExprNoMinus ::= PostfixExpr ;
+PrefixExprNM  . PrefixExprNoMinus ::= PrefixOpNM PrefixExpr ;
+_. PrefixOpNM ::= "++" ;
+_. PrefixOpNM ::= "--" ;
+_. PrefixOpNM ::= "!" ;
+_. PrefixOpNM ::= "~" ;
+
+CastExpr. CastExpr ::= "(" DataType ")" PrefixExprNoMinus ;
+
+PostfixExpr. PostfixExpr ::= PrimaryExpr [PostfixIncr] ;
+_. PostfixIncr ::= "++" ;
+_. PostfixIncr ::= "--" ;
+
+PrimaryExpr. PrimaryExpr ::= TminicValueExpr [PrimaryPostfix] ;
+PrimaryMemberAcc. PrimaryPostfix ::= "." MemberRef ;
+PrimaryArrayAcc . PrimaryPostfix ::= "[" ArrayRange "]" ;
+MemberRefName. MemberRef ::= Id ;
+MemberRefHole. MemberRef ::= "??" ;
+MemberRefType. MemberRef ::= "{" DataType "}" ;
+
+NestedExpr. TminicValueExpr ::= "(" RightExpr ")" ;
+_         . TminicValueExpr ::= ExprGet ;
+_         . TminicValueExpr ::= FuncCall ;
+_         . TminicValueExpr ::= ConstructorExpr ;
+_         . TminicValueExpr ::= VarExpr ;
+_         . TminicValueExpr ::= ConstantExpr ;
+_         . TminicValueExpr ::= ArrInit ;
+_         . TminicValueExpr ::= Regen;
+
+-- Regen is parsed differently to the original Sketch parser
+-- The original parser does not parse Regen structures and just reads the whole
+-- string in as is and processes it later.
+-- We handle this similarly by parsing the inners of Regen expressions as token
+-- streams and leave it to be processed later.
+Regen. Regen ::= "{|" [RegenBranch] "|}"
+RegenBranch    . RegenBranch ::=  "(" [RegenToken] ")" ;
+RegenBranchNoOr. RegenBranch ::=  [RegenTokenNoOr] ;
+
+ConstructorExprNew         . ConstructorExpr ::= "new" QualIdHole ConstrParams ; 
+ConstructorExprNewTypeParam. ConstructorExpr ::= "new" QualIdHole TypeParamsUse ConstrParams ;
+ConstructorAdHoc           . ConstructorExpr ::= "|" QualId "|" ConstrParams ;
+QualIdHole. QualIdHole ::= Id "@" IdHole ;
+_         . QualIdHole ::= IdHole;
+_. IdHole ::= Id ;
+_. IdHole ::= "??" ;
+
+VarExpr. VarExpr ::= Id ;
+
+ArrayRange      . ArrayRange ::= [ExprNamedParamNonEmptyList] ;
+ArrayRangeEnd   . ArrayRange ::= [ExprNamedParamNonEmptyList] ":" RightExpr ;
+ArrayRangeOffset. ArrayRange ::= [ExprNamedParamNonEmptyList] ":" ":" RightExpr ;
+_. ExprNamedParamNonEmptyList ::= ExprNamedParam ;
+
+ConstHex  . ConstantExpr ::= HQuan ;
+ConstNum  . ConstantExpr ::= Number ;
+ConstChar . ConstantExpr ::= Char ;
+ConstStr  . ConstantExpr ::= String ;
+ConstTrue . ConstantExpr ::= "true" ;
+ConstFalse. ConstantExpr ::= "false" ;
+ConstNull . ConstantExpr ::= "null" ;
+ConstHole . ConstantExpr ::= "{*}" ;
+ConstHole2. ConstantExpr ::= "??" ;
+ConstBHole. ConstantExpr ::= BoundedHole; 
+ConstAHole. ConstantExpr ::= "**" ;
+ConstSHole. ConstantExpr ::= "??s" ;
+ConstLVar . ConstantExpr ::= LocalVariable; 
+BoundedHole        . BoundedHole ::= "??" "(" AddExpr ")" ;
+BoundedHoleStartEnd. BoundedHole ::= "??" "(" AddExpr "," AddExpr ")" ;
+
+LocalVariable. LocalVariable ::= "$" "(" DataType ")" ;
+
+ADTDecl. ADTDecl ::= "adt" Id OptionalTypeParams "{" [ADTBodyItem] "}" ;
+_           . ADTBodyItem ::= ADTDecl ;
+_           . ADTBodyItem ::= StructInsideADTDecl ;
+ADTParamDecl. ADTBodyItem ::= ParamDecl ";" ;
+_           . ADTBodyItem ::= Anno ;
+
+StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
+_. StructBodyItem ::= ParamDecl ";" ;
+_. StructBodyItem ::= Anno ;
+
+StructDecl. StructDecl ::=
+    [Anno] "struct" Id OptionalTypeParams OptionalExtends "{" [StructBodyItem] "}" ;
+_              . OptionalExtends ::= ;
+OptionalExtends. OptionalExtends ::= "extends" Id ;
+
+-- Wildcard category for Regen expressions
+-- TODO: Finish wildcard category
+_. RegenToken ::= "|" ;
+_. RegenToken ::= RegenTokenNoOr ;
+NestedRegen. RegenTokenNoOr ::= Regen ;
+_          . RegenTokenNoOr ::= Id ;
+
+-- List Macro Defs
+
+terminator TopDecl "" ;
+terminator PkgDecl "" ;
+separator nonempty VarAssign "," ;
+separator nonempty DataType "," ;
+terminator DataTypeParamList "" ;
+separator DataTypeParm "," ;
+terminator Anno "" ;
+separator nonempty TypeParam "," ;
+terminator FuncMod "" ;
+separator ParamDecl "," ;
+separator ImplParamItem "," ;
+terminator Stmt "" ;
+separator nonempty VarAssignExpr "," ;
+terminator nonempty AssertStmtSimple ";" ;
+terminator SwitchStmtCase "" ;
+separator ExprNamedParam "," ;
+separator LambdaParam "," ;
+separator RightExpr "," ;
+separator nonempty LogicOrExprItem "||" ;
+separator nonempty LogicAndExprItem "&&" ;
+separator nonempty BitwiseOrExprItem "|" ;
+separator nonempty BitWiseXorExprItem "^" ;
+separator nonempty BitWiseAndExprItem "&" ;
+separator nonempty EqualExprItem EqualOp ;
+separator nonempty CompareExprItem CompareOp ;
+separator nonempty ShiftExprItem ShiftOp ;
+separator nonempty AddExprItem AddOp ;
+separator nonempty MultExprItem MultOp ;
+terminator PostfixIncr "" ;
+terminator PrimaryPostfix "" ;
+separator RegenBranch "|" ;
+terminator RegenToken "" ;
+terminator RegenTokenNoOr "" ;
+separator nonempty ExprNamedParamNonEmptyList "," ;
+terminator ADTBodyItem "" ;
+terminator StructBodyItem "" ;
+
+-- Tokens
+
+-- NOTE: Currently we are using BNFC pre-defined chars and strings literals
+-- there may be differences between these and original Sketch lang definitions
+-- refer to ANTLR2 grammar for original definitions
+token Id (((letter|'_') (letter|digit|'_')*)|
+    {"op.+"}| {"op.-"}| {"op.*"}| {"op./"}| {"op.%"}| {"op.="}| {"op.<"}) ;
+token Number (digit+ ('.' digit+)? (('e'|'E') ('+'|'-')? digit+)? 'i'? ) ;
+token HQuan {"0x"} ( digit | ["abcdefABCDEF"] )+ ;
