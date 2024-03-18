@@ -218,10 +218,11 @@ FuncCallParams. FuncCallParams ::= "(" [ExprNamedParam] ")" ;
 Lambda. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
 LambdaParam. LambdaParam ::= Id ;
 
-ConstrParams     . ConstrParams ::= "(" [ExprNamedParamMixed] ")" ;
-[]        . [ExprNamedParamMixed] ::= ;
-(:[])     . [ExprNamedParamMixed] ::= VarAssignExpr ;
-(:). [ExprNamedParamMixed] ::= [ExprNamedParamMixed] "," ExprNamedParam ;
+ConstrParams     . ConstrParams ::= "(" ExprNamedParamMixedSeq ")" ;
+ExprNamedParamMixedSeqEmpty. ExprNamedParamMixedSeq ::= ;
+ExprNamedParamMixedSeqFirst. ExprNamedParamMixedSeq ::= VarAssignExpr ;
+ExprNamedParamMixedSeqCont . ExprNamedParamMixedSeq ::=
+    ExprNamedParamMixedSeq "," ExprNamedParam ;
 
 ExprNamedParamAssign. ExprNamedParam ::= Id "=" ExprOrLambda ;
 ExprNamedParam      . ExprNamedParam ::= ExprOrLambda ;
