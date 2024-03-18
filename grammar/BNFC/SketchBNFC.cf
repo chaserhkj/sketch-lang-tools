@@ -236,20 +236,15 @@ ArrInit. ArrInit ::= "{" [RightExpr] "}" ;
 TernaryExprNone. TernaryExpr ::= LogicOrExpr ;
 TernaryExpr    . TernaryExpr ::= LogicOrExpr "?" TernaryExpr ":" TernaryExpr ;
 
-LogicOrExpr. LogicOrExpr ::= [LogicOrExprItem] ;
-_. LogicOrExprItem ::= LogicAndExpr ;
+LogicOrExpr. LogicOrExpr ::= [LogicAndExpr] ;
 
-LogicAndExpr. LogicAndExpr ::= [LogicAndExprItem] ;
-_. LogicAndExprItem ::= BitwiseOrExpr ;
+LogicAndExpr. LogicAndExpr ::= [BitwiseOrExpr] ;
 
-BitwiseOrExpr. BitwiseOrExpr ::= [BitwiseOrExprItem] ;
-_. BitwiseOrExprItem ::= BitWiseXorExpr ;
+BitwiseOrExpr. BitwiseOrExpr ::= [BitWiseXorExpr] ;
 
-BitWiseXorExpr. BitWiseXorExpr ::= [BitWiseXorExprItem];
-_. BitWiseXorExprItem ::= BitWiseAndExpr ;
+BitWiseXorExpr. BitWiseXorExpr ::= [BitWiseAndExpr];
 
-BitWiseAndExpr. BitWiseAndExpr ::= [BitWiseAndExprItem] ;
-_. BitWiseAndExprItem ::= EqualExpr;
+BitWiseAndExpr. BitWiseAndExpr ::= [EqualExpr] ;
 
 EqualExpr. EqualExpr ::= [EqualExprItem] ;
 _. EqualExprItem ::= CompareExpr;
@@ -407,11 +402,11 @@ terminator SwitchStmtCase "" ;
 separator ExprNamedParam "," ;
 separator LambdaParam "," ;
 separator RightExpr "," ;
-separator nonempty LogicOrExprItem "||" ;
-separator nonempty LogicAndExprItem "&&" ;
-separator nonempty BitwiseOrExprItem "|" ;
-separator nonempty BitWiseXorExprItem "^" ;
-separator nonempty BitWiseAndExprItem "&" ;
+separator nonempty LogicAndExpr "||" ;
+separator nonempty BitwiseOrExpr "&&" ;
+separator nonempty BitWiseXorExpr "|" ;
+separator nonempty BitWiseAndExpr "^" ;
+separator nonempty EqualExpr "&" ;
 (:[]). [EqualExprItem] ::= EqualExprItem ;
 (:)  . [EqualExprItem] ::= EqualExprItem EqualOp [EqualExprItem] ;
 (:[]). [CompareExprItem] ::= CompareExprItem ;
