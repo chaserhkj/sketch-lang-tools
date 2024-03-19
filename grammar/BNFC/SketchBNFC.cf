@@ -3,13 +3,13 @@
 
 Prog . Program ::= [TopDecl] ;
 
-TopDecl     . TopDecl ::= PkgDecl ;
+TopPkgDecl  . TopDecl ::= PkgDecl ;
 TopInclude  . TopDecl ::= IncludeStmt ;
-TopPkgStmt  . TopDecl ::= "package" Id ";" ;
+TopPkgDef   . TopDecl ::= "package" Id ";" ;
 TopInlinePkg. TopDecl ::= "package" Id PkgBody ;
 TopPragma   . TopDecl ::= PragmaStmt ;
 
-PkgBody. PkgBody ::= "{" [PkgDecl] "}" ;
+PkgBodyBlock. PkgBody ::= "{" [PkgDecl] "}" ;
 
 PkgFunc  . PkgDecl ::= FunctionDecl ;
 PkgField . PkgDecl ::= FieldDecl ";" ;
@@ -69,21 +69,21 @@ ParFor. ParForStmt ::= "parfor" "(" VarExpr "<-" RangeExp ")" PseudoBlock ;
 Range  . RangeExp ::= RightExpr "until" RightExpr ;
 RangeBy. RangeExp ::= RightExpr "until" RightExpr "by" RightExpr;
 
-TypeParamId  . TypeParamsUse ::= "<" QualId "<" DataType ">>" ;
-TypeParamBare. TypeParamsUse ::= "<" [DataType] ">" ;
+TypeParamsUseId  . TypeParamsUse ::= "<" QualId "<" DataType ">>" ;
+TypeParamsUseBare. TypeParamsUse ::= "<" [DataType] ">" ;
 
-QualId. QualId ::= Id "@" Id ;
-NormId. QualId ::= Id ;
+QualIdFull  . QualId ::= Id "@" Id ;
+QualIdUnQual. QualId ::= Id ;
 
 GlobalDataType. DataType ::= "global" DataTypeMain ;
 NormalDataType. DataType ::= DataTypeMain ;
 VoidDataType  . DataType ::= "void" ;
 DataTypeNoParam  . DataTypeMain ::= DataTypeSpec [DataTypeParamList] ; 
 DataTypeWithParam. DataTypeMain ::= DataTypeSpec TypeParamsUse [DataTypeParamList] ;
-PrimitiveType . DataTypeSpec ::= PrimitiveType ;
-DefinedType   . DataTypeSpec ::= QualId ;
-DefinedTypeTmp. DataTypeSpec ::= "|" QualId "|" ;
-DataTypeParamList. DataTypeParamList  ::= "[" [DataTypeParm] "]" ;
+PlainPrimitiveType. DataTypeSpec ::= PrimitiveType ;
+DefinedType       . DataTypeSpec ::= QualId ;
+DefinedTypeTmp    . DataTypeSpec ::= "|" QualId "|" ;
+DataTypeParamListFull. DataTypeParamList  ::= "[" [DataTypeParm] "]" ;
 DataTypeParam       . DataTypeParm ::= ExprNamedParam ;
 DataTypeParamBounded. DataTypeParm ::= ExprNamedParam "<:" Number ;
 
@@ -95,18 +95,18 @@ Double . PrimitiveType ::= "double" ;
 Fun    . PrimitiveType ::= "fun" ;
 Char   . PrimitiveType ::= "char" ;
 
-VarDecl. VarDecl ::= DataType [VarAssign] ;
-VarNoAssign. VarAssign ::= Id ;
-VarAssign  . VarAssign ::= Id "=" ExprOrLambda ; 
+VarDeclFull. VarDecl ::= DataType [VarAssign] ;
+VarAssignId  . VarAssign ::= Id ;
+VarAssignFull. VarAssign ::= Id "=" ExprOrLambda ; 
 
 OptLambda. ExprOrLambda ::= LambdaExpr ;
 OptExpr  . ExprOrLambda ::= RightExpr ;
 
-Anno     . Anno ::= "@" Id "(" String ")" ;
+AnnoFull . Anno ::= "@" Id "(" String ")" ;
 AnnoEmpty. Anno ::= "@" Id "(" ")" ;
 
-TypeParams. TypeParams ::= "<" [TypeParam] ">" ;
-TypeParam. TypeParam ::= Id ;
+TypeParamsFull. TypeParams ::= "<" [TypeParam] ">" ;
+TypeParamId. TypeParam ::= Id ;
 
 FDeclWithBody. FunctionDecl ::= FuncDeclMain Block ;
 FDeclOnly    . FunctionDecl ::= FuncDeclMain ";" ;
@@ -120,22 +120,22 @@ Model    . FuncMod ::= "model" ;
 TypeParamsEmpty. OptionalTypeParams ::= ;
 TypeParamsOpt  . OptionalTypeParams ::= TypeParams ;
 FuncImplEmpty. FuncImpl ::= ;
-FuncImpl     . FuncImpl ::= "implements" Id ;
-FunFixesEmpty. FuncFixes ::= ;
-FuncFixes    . FuncFixes ::= "fixes" Id ;
+FuncImplFull . FuncImpl ::= "implements" Id ;
+FuncFixesEmpty. FuncFixes ::= ;
+FuncFixesFull . FuncFixes ::= "fixes" Id ;
 
-ReturnType. ReturnType ::= DataType ;
+ReturnTypeFull. ReturnType ::= DataType ;
 
 PDeclList    . ParamDeclList ::= "(" [ParamDecl] ")" ;
 PDeclImplList. ParamDeclList ::= "(" ImplParam [ParamDecl] ")" ;
 
-ImplParam. ImplParam ::= "[" [ImplParamItem] "]" ;
-ImplParamItem. ImplParamItem ::= "int" Id ;
+ImplParamList . ImplParam ::= "[" [ImplParamItem] "]" ;
+ImplParamIntId. ImplParamItem ::= "int" Id ;
 
 PDecl   . ParamDecl ::= DataType Id ;
 PDeclRef. ParamDecl ::= "ref" DataType Id ;
 
-Block. Block ::= "{" [Stmt] "}" ;
+Blk. Block ::= "{" [Stmt] "}" ;
 
 Insert. InsertBlock ::=  "insert" Block "into" Block ;
 
@@ -144,7 +144,7 @@ Reorder. ReorderBlock ::= "reorder" Block ;
 Atomic   . AtomicBlock ::= "atomic" Block ;
 AtomicVal. AtomicBlock ::= "atomic" "(" RightExpr ")" Block ;
 
-PseudoBlock. PseudoBlock ::= Stmt ;
+PseudoBlk. PseudoBlock ::= Stmt ;
 
 Return   . ReturnStmt ::= "return" ;
 ReturnVal. ReturnStmt ::= "return" RightExpr ;
@@ -158,7 +158,7 @@ SpecialAsrt. SpecialAssertStmt ::=
     SpecialAssertLet "{" SpecialAssertAssume [AssertStmtSimple] "}" ;
 SpecialAsrtLet      . SpecialAssertLet ::= "let" ;
 SpecialAsrtLetAssign. SpecialAssertLet ::= "let" [VarAssignExpr] ;
-VarAssignExpr. VarAssignExpr ::= Id "=" RightExpr ;
+VarAssignExprFull. VarAssignExpr ::= Id "=" RightExpr ;
 SpecialAsrtAssmEmpty. SpecialAssertAssume ::= ;
 SpecialAsrtAssm     . SpecialAssertAssume ::= "assume" RightExpr ;
 
@@ -204,62 +204,62 @@ ForIncr     . ForIncrStmt ::= ExprStmt ;
 
 Expr. ExprStmt ::= AssignExpr ;
 
-AssignExpr        . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
+Assign            . AssignExpr ::= PrefixExpr AssignOp ExprOrLambda ;
 AssignExprNoAssign. AssignExpr ::= PrefixExpr ;
-AssignOp      . AssignOp ::= "=" ;
+PlainAssignOp . AssignOp ::= "=" ;
 PlusAssignOp  . AssignOp ::= "+=" ;
 MinusAssignOp . AssignOp ::= "-=" ;
 MultiAssignOp . AssignOp ::= "*=" ;
 DivideAssignOp. AssignOp ::= "/=" ;
 DotAssignOp   . AssignOp ::= ".=" ;
 
-FuncCall. FuncCall ::= QualId FuncCallParams ;
+FuncCallFull. FuncCall ::= QualId FuncCallParams ;
 
-ExprGet. ExprGet ::= "??" "(" "{" ExprGetParams "}" ")" ;
+ExprGetFull. ExprGet ::= "??" "(" "{" ExprGetParams "}" ")" ;
 
-ExprGetParams. ExprGetParams ::= [ExprNamedParam] ;
+ExprGetParamsFull. ExprGetParams ::= [ExprNamedParam] ;
 
-FuncCallParams. FuncCallParams ::= "(" [ExprNamedParam] ")" ;
+FuncCallParamsFull. FuncCallParams ::= "(" [ExprNamedParam] ")" ;
 
 Lambda. LambdaExpr ::= "(" [LambdaParam] ")" "->" RightExpr ;
-LambdaParam. LambdaParam ::= Id ;
+LambdaParamId. LambdaParam ::= Id ;
 
-ConstrParams     . ConstrParams ::= "(" ExprNamedParamMixedSeq ")" ;
+ConstrParamsFull. ConstrParams ::= "(" ExprNamedParamMixedSeq ")" ;
 ExprNamedParamMixedSeqEmpty. ExprNamedParamMixedSeq ::= ;
 ExprNamedParamMixedSeqFirst. ExprNamedParamMixedSeq ::= VarAssignExpr ;
 ExprNamedParamMixedSeqCont . ExprNamedParamMixedSeq ::=
     ExprNamedParamMixedSeq "," ExprNamedParam ;
 
 ExprNamedParamAssign. ExprNamedParam ::= Id "=" ExprOrLambda ;
-ExprNamedParam      . ExprNamedParam ::= ExprOrLambda ;
+ExprNamedParamSimple. ExprNamedParam ::= ExprOrLambda ;
 
-RightExprNotAgmax. RightExprNotAgmax ::= TernaryExpr ;
+RightExprNotAgmaxFull. RightExprNotAgmax ::= TernaryExpr ;
 
-RightExpr. RightExpr ::= RightExprNotAgmax ;
+Right. RightExpr ::= RightExprNotAgmax ;
 
-ArrInit. ArrInit ::= "{" [RightExpr] "}" ;
+ArrInitFull. ArrInit ::= "{" [RightExpr] "}" ;
 
 TernaryExprNone. TernaryExpr ::= LogicOrExpr ;
-TernaryExpr    . TernaryExpr ::= LogicOrExpr "?" TernaryExpr ":" TernaryExpr ;
+Ternary. TernaryExpr ::= LogicOrExpr "?" TernaryExpr ":" TernaryExpr ;
 
-LogicOrExpr. LogicOrExpr ::= [LogicAndExpr] ;
+LogicOr. LogicOrExpr ::= [LogicAndExpr] ;
 
-LogicAndExpr. LogicAndExpr ::= [BitwiseOrExpr] ;
+LogicAnd. LogicAndExpr ::= [BitwiseOrExpr] ;
 
-BitwiseOrExpr. BitwiseOrExpr ::= [BitWiseXorExpr] ;
+BitwiseOr. BitwiseOrExpr ::= [BitWiseXorExpr] ;
 
-BitWiseXorExpr. BitWiseXorExpr ::= [BitWiseAndExpr];
+BitWiseXor. BitWiseXorExpr ::= [BitWiseAndExpr];
 
-BitWiseAndExpr. BitWiseAndExpr ::= [EqualExpr] ;
+BitWiseAnd. BitWiseAndExpr ::= [EqualExpr] ;
 
-EqualExpr. EqualExpr ::= EqualExprItems ;
+Equal. EqualExpr ::= EqualExprItems ;
 EqualExprItemsFirst. EqualExprItems ::= CompareExpr ;
 EqualExprItemsCont . EqualExprItems ::= CompareExpr EqualOp EqualExprItems;
-EqualOp   . EqualOp ::= "==" ;
-TriEqualOp. EqualOp ::= "===" ;
-NonEqualOp. EqualOp ::= "!=" ;
+PlainEqualOp. EqualOp ::= "==" ;
+TriEqualOp  . EqualOp ::= "===" ;
+NonEqualOp  . EqualOp ::= "!=" ;
 
-CompareExpr. CompareExpr ::= CompareExprItems ;
+Compare. CompareExpr ::= CompareExprItems ;
 CompareExprItemsFirst. CompareExprItems ::= ShiftExpr ;
 CompareExprItemsCont . CompareExprItems ::= ShiftExpr CompareOp CompareExprItems;
 LTOp. CompareOp ::= "<" ;
@@ -271,13 +271,13 @@ DotGTOp. CompareOp ::= ".>" ;
 DotLEOp. CompareOp ::= ".<=" ;
 DotGEOp. CompareOp ::= ".>=" ;
 
-ShiftExpr. ShiftExpr ::= ShiftExprItems ;
+Shift. ShiftExpr ::= ShiftExprItems ;
 ShiftExprItemsFirst. ShiftExprItems ::= AddExpr ;
 ShiftExprItemsCont . ShiftExprItems ::= AddExpr ShiftOp ShiftExprItems;
 LShiftOp. ShiftOp ::= "<<" ;
 RShiftOp. ShiftOp ::= ">>" ;
 
-AddExpr. AddExpr ::= AddExprItems;
+Add. AddExpr ::= AddExprItems;
 AddExprItemsFirst. AddExprItems ::= MultExpr ;
 AddExprItemsCont . AddExprItems ::= MultExpr AddOp AddExprItems;
 PlusOp    . AddOp ::= "+" ;
@@ -286,17 +286,17 @@ SelectOp  . AddOp ::= "{|}" ;
 DotPlusOp . AddOp ::= ".+" ;
 DotMinusOp. AddOp ::= ".-" ;
 
-MultExpr. MultExpr ::= MultExprItems;
+Mult. MultExpr ::= MultExprItems;
 MultExprItemsFirst. MultExprItems ::= PrefixExpr ;
 MultExprItemsCont . MultExprItems ::= PrefixExpr MultOp MultExprItems;
-MultOp     . MultOp ::= "*" ;
+PlainMultOp. MultOp ::= "*" ;
 DivideOp   . MultOp ::= "/" ;
 ModOp      . MultOp ::= "%" ;
 DotMultOp  . MultOp ::= ".*" ;
 DotDivideOp. MultOp ::= "./" ;
 DotModOp   . MultOp ::= ".%" ;
 
-PrefixExpr     . PrefixExpr ::= PrefixExprNoMinus ;
+PrefixExprNMOpt. PrefixExpr ::= PrefixExprNoMinus ;
 PrefixExprMinus. PrefixExpr ::= "-" PrefixExpr ;
 
 PrefixExprCast. PrefixExprNoMinus ::= CastExpr ;
@@ -307,13 +307,13 @@ DecrOp. PrefixOpNM ::= "--" ;
 NotOp . PrefixOpNM ::= "!" ;
 InvtOp. PrefixOpNM ::= "~" ;
 
-CastExpr. CastExpr ::= "(" DataType ")" PrefixExprNoMinus ;
+Cast. CastExpr ::= "(" DataType ")" PrefixExprNoMinus ;
 
-PostfixExpr. PostfixExpr ::= PrimaryExpr [PostfixIncr] ;
+Postfix. PostfixExpr ::= PrimaryExpr [PostfixIncr] ;
 PostIncrOp. PostfixIncr ::= "++" ;
 PostDecrOp. PostfixIncr ::= "--" ;
 
-PrimaryExpr. PrimaryExpr ::= TminicValueExpr [PrimaryPostfix] ;
+Primary. PrimaryExpr ::= TminicValueExpr [PrimaryPostfix] ;
 PrimaryMemberAcc. PrimaryPostfix ::= "." MemberRef ;
 PrimaryArrayAcc . PrimaryPostfix ::= "[" ArrayRange "]" ;
 MemberRefName. MemberRef ::= Id ;
@@ -334,24 +334,24 @@ TminicRegen     . TminicValueExpr ::= Regen;
 -- string in as is and processes it later.
 -- We handle this similarly by parsing the inners of Regen expressions as token
 -- streams and leave it to be processed later.
-Regen. Regen ::= "{|" [RegenBranch] "|}" ;
-RegenBranch    . RegenBranch ::=  "(" [RegenToken] ")" ;
+RegenFull. Regen ::= "{|" [RegenBranch] "|}" ;
+RegenBranchFull. RegenBranch ::=  "(" [RegenToken] ")" ;
 RegenBranchNoOr. RegenBranch ::=  [RegenTokenNoOr] ;
 
 ConstructorExprNew         . ConstructorExpr ::= "new" QualIdHole ConstrParams ; 
 ConstructorExprNewTypeParam. ConstructorExpr ::= "new" QualIdHole TypeParamsUse ConstrParams ;
 ConstructorTmp             . ConstructorExpr ::= "|" QualId "|" ConstrParams ;
-QualIdHole. QualIdHole ::= Id "@" IdHole ;
-NormIdHole. QualIdHole ::= IdHole;
+QualIdHoleFull  . QualIdHole ::= Id "@" IdHole ;
+QualIdHoleUnQual. QualIdHole ::= IdHole;
 OptId  . IdHole ::= Id ;
 OptHole. IdHole ::= "??" ;
 
-VarExpr. VarExpr ::= Id ;
+Var. VarExpr ::= Id ;
 
-ArrayRange      . ArrayRange ::= [ExprNamedParamNonEmptyList] ;
+ArrayRangeSimple. ArrayRange ::= [ExprNamedParamNonEmptyList] ;
 ArrayRangeEnd   . ArrayRange ::= [ExprNamedParamNonEmptyList] ":" RightExpr ;
 ArrayRangeOffset. ArrayRange ::= [ExprNamedParamNonEmptyList] ":" ":" RightExpr ;
-ExprNamedParamNonEmptyList. ExprNamedParamNonEmptyList ::= ExprNamedParam ;
+ExprNamedParamNonEmptyListFull. ExprNamedParamNonEmptyList ::= ExprNamedParam ;
 
 ConstHex  . ConstantExpr ::= HQuan ;
 ConstNum  . ConstantExpr ::= Number ;
@@ -366,30 +366,30 @@ ConstBHole. ConstantExpr ::= BoundedHole;
 ConstAHole. ConstantExpr ::= "**" ;
 ConstSHole. ConstantExpr ::= "??s" ;
 ConstLVar . ConstantExpr ::= LocalVariable; 
-BoundedHole        . BoundedHole ::= "??" "(" AddExpr ")" ;
+BoundedHoleSimple  . BoundedHole ::= "??" "(" AddExpr ")" ;
 BoundedHoleStartEnd. BoundedHole ::= "??" "(" AddExpr "," AddExpr ")" ;
 
-LocalVariable. LocalVariable ::= "$" "(" DataType ")" ;
+LocalVar. LocalVariable ::= "$" "(" DataType ")" ;
 
-ADTDecl. ADTDecl ::= "adt" Id OptionalTypeParams "{" [ADTBodyItem] "}" ;
+ADT. ADTDecl ::= "adt" Id OptionalTypeParams "{" [ADTBodyItem] "}" ;
 NestedADTDecl. ADTBodyItem ::= ADTDecl ;
 ADTDeclStruct. ADTBodyItem ::= StructInsideADTDecl ;
 ADTParamDecl . ADTBodyItem ::= ParamDecl ";" ;
 ADTAnno      . ADTBodyItem ::= Anno ;
 
-StructInsideADTDecl. StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
+StructInsideADT. StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
 StructParamDecl. StructBodyItem ::= ParamDecl ";" ;
 StructAnno     . StructBodyItem ::= Anno ;
 
-StructDecl. StructDecl ::=
+Struct. StructDecl ::=
     [Anno] "struct" Id OptionalTypeParams OptionalExtends "{" [StructBodyItem] "}" ;
 OptExtendsEmpty. OptionalExtends ::= ;
 OptExtends     . OptionalExtends ::= "extends" Id ;
 
 -- Wildcard category for Regen expressions
 -- TODO: Finish wildcard category
-RegenTokenOr. RegenToken ::= "|" ;
-RegenToken  . RegenToken ::= RegenTokenNoOr ;
+RegenTokenOr   . RegenToken ::= "|" ;
+RegenTokenOther. RegenToken ::= RegenTokenNoOr ;
 NestedRegen. RegenTokenNoOr ::= Regen ;
 RegenId    . RegenTokenNoOr ::= Id ;
 
