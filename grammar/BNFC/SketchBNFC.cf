@@ -252,61 +252,66 @@ BitWiseXorExpr. BitWiseXorExpr ::= [BitWiseAndExpr];
 
 BitWiseAndExpr. BitWiseAndExpr ::= [EqualExpr] ;
 
-EqualExpr. EqualExpr ::= [EqualExprItem] ;
-_. EqualExprItem ::= CompareExpr;
-_. EqualOp ::= "==" ;
-_. EqualOp ::= "===" ;
-_. EqualOp ::= "!=" ;
+EqualExpr. EqualExpr ::= EqualExprItems ;
+EqualExprItemsFirst. EqualExprItems ::= CompareExpr ;
+EqualExprItemsCont . EqualExprItems ::= CompareExpr EqualOp EqualExprItems;
+EqualOp   . EqualOp ::= "==" ;
+TriEqualOp. EqualOp ::= "===" ;
+NonEqualOp. EqualOp ::= "!=" ;
 
-CompareExpr. CompareExpr ::= [CompareExprItem] ;
-_. CompareExprItem ::= ShiftExpr ;
-_. CompareOp ::= "<" ;
-_. CompareOp ::= "<=" ;
-_. CompareOp ::= ">" ;
-_. CompareOp ::= ">=" ;
-_. CompareOp ::= ".<" ;
-_. CompareOp ::= ".>" ;
-_. CompareOp ::= ".<=" ;
-_. CompareOp ::= ".>=" ;
+CompareExpr. CompareExpr ::= CompareExprItems ;
+CompareExprItemsFirst. CompareExprItems ::= ShiftExpr ;
+CompareExprItemsCont . CompareExprItems ::= ShiftExpr CompareOp CompareExprItems;
+LTOp. CompareOp ::= "<" ;
+LEOp. CompareOp ::= "<=" ;
+GTOp. CompareOp ::= ">" ;
+GEOp. CompareOp ::= ">=" ;
+DotLTOp. CompareOp ::= ".<" ;
+DotGTOp. CompareOp ::= ".>" ;
+DotLEOp. CompareOp ::= ".<=" ;
+DotGEOp. CompareOp ::= ".>=" ;
 
-ShiftExpr. ShiftExpr ::= [ShiftExprItem] ;
-_. ShiftExprItem ::= AddExpr ;
-_. ShiftOp ::= "<<" ;
-_. ShiftOp ::= ">>" ;
+ShiftExpr. ShiftExpr ::= ShiftExprItems ;
+ShiftExprItemsFirst. ShiftExprItems ::= AddExpr ;
+ShiftExprItemsCont . ShiftExprItems ::= AddExpr ShiftOp ShiftExprItems;
+LShiftOp. ShiftOp ::= "<<" ;
+RShiftOp. ShiftOp ::= ">>" ;
 
-AddExpr. AddExpr ::= [AddExprItem];
-_. AddExprItem ::= MultExpr ;
-_. AddOp ::= "+" ;
-_. AddOp ::= "-" ;
-_. AddOp ::= "{|}" ;
-_. AddOp ::= ".+" ;
-_. AddOp ::= ".-" ;
+AddExpr. AddExpr ::= AddExprItems;
+AddExprItemsFirst. AddExprItems ::= MultExpr ;
+AddExprItemsCont . AddExprItems ::= MultExpr AddOp AddExprItems;
+PlusOp    . AddOp ::= "+" ;
+MinusOp   . AddOp ::= "-" ;
+SelectOp  . AddOp ::= "{|}" ;
+DotPlusOp . AddOp ::= ".+" ;
+DotMinusOp. AddOp ::= ".-" ;
 
-MultExpr. MultExpr ::= [MultExprItem];
-_. MultExprItem ::= PrefixExpr ;
-_. MultOp ::= "*" ;
-_. MultOp ::= "/" ;
-_. MultOp ::= "%" ;
-_. MultOp ::= ".*" ;
-_. MultOp ::= "./" ;
-_. MultOp ::= ".%" ;
+MultExpr. MultExpr ::= MultExprItems;
+MultExprItemsFirst. MultExprItems ::= PrefixExpr ;
+MultExprItemsCont . MultExprItems ::= PrefixExpr MultOp MultExprItems;
+MultOp     . MultOp ::= "*" ;
+DivideOp   . MultOp ::= "/" ;
+ModOp      . MultOp ::= "%" ;
+DotMultOp  . MultOp ::= ".*" ;
+DotDivideOp. MultOp ::= "./" ;
+DotModOp   . MultOp ::= ".%" ;
 
-_              . PrefixExpr ::= PrefixExprNoMinus ;
+PrefixExpr     . PrefixExpr ::= PrefixExprNoMinus ;
 PrefixExprMinus. PrefixExpr ::= "-" PrefixExpr ;
 
 PrefixExprCast. PrefixExprNoMinus ::= CastExpr ;
 PrefixExprPost. PrefixExprNoMinus ::= PostfixExpr ;
 PrefixExprNM  . PrefixExprNoMinus ::= PrefixOpNM PrefixExpr ;
-_. PrefixOpNM ::= "++" ;
-_. PrefixOpNM ::= "--" ;
-_. PrefixOpNM ::= "!" ;
-_. PrefixOpNM ::= "~" ;
+IncrOp. PrefixOpNM ::= "++" ;
+DecrOp. PrefixOpNM ::= "--" ;
+NotOp . PrefixOpNM ::= "!" ;
+InvtOp. PrefixOpNM ::= "~" ;
 
 CastExpr. CastExpr ::= "(" DataType ")" PrefixExprNoMinus ;
 
 PostfixExpr. PostfixExpr ::= PrimaryExpr [PostfixIncr] ;
-_. PostfixIncr ::= "++" ;
-_. PostfixIncr ::= "--" ;
+PostIncrOp. PostfixIncr ::= "++" ;
+PostDecrOp. PostfixIncr ::= "--" ;
 
 PrimaryExpr. PrimaryExpr ::= TminicValueExpr [PrimaryPostfix] ;
 PrimaryMemberAcc. PrimaryPostfix ::= "." MemberRef ;
@@ -315,14 +320,14 @@ MemberRefName. MemberRef ::= Id ;
 MemberRefHole. MemberRef ::= "??" ;
 MemberRefType. MemberRef ::= "{" DataType "}" ;
 
-NestedExpr. TminicValueExpr ::= "(" RightExpr ")" ;
-_         . TminicValueExpr ::= ExprGet ;
-_         . TminicValueExpr ::= FuncCall ;
-_         . TminicValueExpr ::= ConstructorExpr ;
-_         . TminicValueExpr ::= VarExpr ;
-_         . TminicValueExpr ::= ConstantExpr ;
-_         . TminicValueExpr ::= ArrInit ;
-_         . TminicValueExpr ::= Regen;
+TminicNestedExpr. TminicValueExpr ::= "(" RightExpr ")" ;
+TminicExprGet   . TminicValueExpr ::= ExprGet ;
+TminicFuncCall  . TminicValueExpr ::= FuncCall ;
+TminicConstruct . TminicValueExpr ::= ConstructorExpr ;
+TminicVar       . TminicValueExpr ::= VarExpr ;
+TminicConst     . TminicValueExpr ::= ConstantExpr ;
+TminicArrInit   . TminicValueExpr ::= ArrInit ;
+TminicRegen     . TminicValueExpr ::= Regen;
 
 -- Regen is parsed differently to the original Sketch parser
 -- The original parser does not parse Regen structures and just reads the whole
@@ -335,18 +340,18 @@ RegenBranchNoOr. RegenBranch ::=  [RegenTokenNoOr] ;
 
 ConstructorExprNew         . ConstructorExpr ::= "new" QualIdHole ConstrParams ; 
 ConstructorExprNewTypeParam. ConstructorExpr ::= "new" QualIdHole TypeParamsUse ConstrParams ;
-ConstructorAdHoc           . ConstructorExpr ::= "|" QualId "|" ConstrParams ;
+ConstructorTmp             . ConstructorExpr ::= "|" QualId "|" ConstrParams ;
 QualIdHole. QualIdHole ::= Id "@" IdHole ;
-_         . QualIdHole ::= IdHole;
-_. IdHole ::= Id ;
-_. IdHole ::= "??" ;
+NormIdHole. QualIdHole ::= IdHole;
+OptId  . IdHole ::= Id ;
+OptHole. IdHole ::= "??" ;
 
 VarExpr. VarExpr ::= Id ;
 
 ArrayRange      . ArrayRange ::= [ExprNamedParamNonEmptyList] ;
 ArrayRangeEnd   . ArrayRange ::= [ExprNamedParamNonEmptyList] ":" RightExpr ;
 ArrayRangeOffset. ArrayRange ::= [ExprNamedParamNonEmptyList] ":" ":" RightExpr ;
-_. ExprNamedParamNonEmptyList ::= ExprNamedParam ;
+ExprNamedParamNonEmptyList. ExprNamedParamNonEmptyList ::= ExprNamedParam ;
 
 ConstHex  . ConstantExpr ::= HQuan ;
 ConstNum  . ConstantExpr ::= Number ;
@@ -367,26 +372,26 @@ BoundedHoleStartEnd. BoundedHole ::= "??" "(" AddExpr "," AddExpr ")" ;
 LocalVariable. LocalVariable ::= "$" "(" DataType ")" ;
 
 ADTDecl. ADTDecl ::= "adt" Id OptionalTypeParams "{" [ADTBodyItem] "}" ;
-_           . ADTBodyItem ::= ADTDecl ;
-_           . ADTBodyItem ::= StructInsideADTDecl ;
-ADTParamDecl. ADTBodyItem ::= ParamDecl ";" ;
-_           . ADTBodyItem ::= Anno ;
+NestedADTDecl. ADTBodyItem ::= ADTDecl ;
+ADTDeclStruct. ADTBodyItem ::= StructInsideADTDecl ;
+ADTParamDecl . ADTBodyItem ::= ParamDecl ";" ;
+ADTAnno      . ADTBodyItem ::= Anno ;
 
 StructInsideADTDecl. StructInsideADTDecl ::= Id "{" [StructBodyItem] "}" ;
-_. StructBodyItem ::= ParamDecl ";" ;
-_. StructBodyItem ::= Anno ;
+StructParamDecl. StructBodyItem ::= ParamDecl ";" ;
+StructAnno     . StructBodyItem ::= Anno ;
 
 StructDecl. StructDecl ::=
     [Anno] "struct" Id OptionalTypeParams OptionalExtends "{" [StructBodyItem] "}" ;
-_              . OptionalExtends ::= ;
-OptionalExtends. OptionalExtends ::= "extends" Id ;
+OptExtendsEmpty. OptionalExtends ::= ;
+OptExtends     . OptionalExtends ::= "extends" Id ;
 
 -- Wildcard category for Regen expressions
 -- TODO: Finish wildcard category
-_. RegenToken ::= "|" ;
-_. RegenToken ::= RegenTokenNoOr ;
+RegenTokenOr. RegenToken ::= "|" ;
+RegenToken  . RegenToken ::= RegenTokenNoOr ;
 NestedRegen. RegenTokenNoOr ::= Regen ;
-_          . RegenTokenNoOr ::= Id ;
+RegenId    . RegenTokenNoOr ::= Id ;
 
 -- List Defs
 
@@ -413,16 +418,6 @@ separator nonempty BitwiseOrExpr "&&" ;
 separator nonempty BitWiseXorExpr "|" ;
 separator nonempty BitWiseAndExpr "^" ;
 separator nonempty EqualExpr "&" ;
-(:[]). [EqualExprItem] ::= EqualExprItem ;
-(:)  . [EqualExprItem] ::= EqualExprItem EqualOp [EqualExprItem] ;
-(:[]). [CompareExprItem] ::= CompareExprItem ;
-(:)  . [CompareExprItem] ::= CompareExprItem CompareOp [CompareExprItem] ;
-(:[]). [ShiftExprItem] ::= ShiftExprItem ;
-(:)  . [ShiftExprItem] ::= ShiftExprItem ShiftOp [ShiftExprItem] ;
-(:[]). [AddExprItem] ::= AddExprItem ;
-(:)  . [AddExprItem] ::= AddExprItem AddOp [AddExprItem] ;
-(:[]). [MultExprItem] ::= MultExprItem ;
-(:)  . [MultExprItem] ::= MultExprItem MultOp [MultExprItem] ;
 terminator PostfixIncr "" ;
 terminator PrimaryPostfix "" ;
 separator RegenBranch "|" ;
