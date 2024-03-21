@@ -1,1 +1,4 @@
 .envrc
+*.jar
+sketch-*.tar.gz
+codegen/sketch_json/bin
