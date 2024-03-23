@@ -17,11 +17,8 @@
   <property name="sketch.jar" value="../sketch-1.7.6-noarch.jar"/>
   <!-- Other dependencies for this specific code generator -->
   <property name="gson.jar" value="${lib.dir}/gson-2.8.5.jar"/>
-  <property name="gson-extra.jar" value="${lib.dir}/gson-extras-2.8.5.jar"/>
-  <property name="jsr250.jar" value="${lib.dir}/jsr250-api-1.0.jar"/>
-  <property name="reflections.jar" value="${lib.dir}/reflections-0.10.2.jar"/>
   <!-- All extra dependencies classpath -->
-  <property name="dep-cp" value="${gson.jar}:${gson-extra.jar}:${jsr250.jar}:${reflections.jar}" />
+  <property name="dep-cp" value="${gson.jar}" />
 
   <!-- set up some directories used by this project -->
   <target name="init" description="setup project directories">
@@ -47,9 +44,6 @@
   <target name="mk_jar" depends="compile" description="make jar file">
     <jar basedir="${build.dir}" destfile="${codegen.jar}">
       <zipgroupfileset dir="." includes="lib/gson-2.8.5.jar" />
-      <zipgroupfileset dir="." includes="lib/gson-extras-2.8.5.jar" />
-      <zipgroupfileset dir="." includes="lib/jsr250-api-1.0.jar" />
-      <zipgroupfileset dir="." includes="lib/reflections-0.10.2.jar" />
     </jar>
   </target>
 
